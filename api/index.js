@@ -11,8 +11,13 @@ var data = [
     {
         id: 2,
         name: "test2",
-        done: "true",
-    }
+        done: true,
+    },
+    {
+      id: 3,
+      name: "test3",
+      done: false,
+  }
 ];
 
 app.use(express.json());
@@ -29,6 +34,7 @@ app.use((req, res, next) => {
 
 app.get("/", (req, res) => {
     res.send(data);
+    console.log("hello world")
 });
 
 app.post("/", (req, res) => {

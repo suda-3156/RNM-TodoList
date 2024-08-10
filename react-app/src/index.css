@@ -1,3 +1,25 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components{
+button {
+  @apply shadow-lg shadow-gray-200;
+    transition: all 0.3s;
+    cursor: pointer;
+    &:hover {
+      transform: scale(1.05);
+    }
+    &:active {
+      filter: brightness(0.9);
+      transform: translate(3px, 3px);
+      box-shadow: none;
+    }
+    &:focus-visible {
+      outline: 2px solid #1e293b;
+      /* outline-offset: 3px; */
+    }
+  }
+
+}
+  
