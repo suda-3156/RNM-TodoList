@@ -1,0 +1,55 @@
+
+services:
+  api:
+    # 公式のやつ。2024/8/4はこれが最新っぽい。node versionで調べて出てくるやつ。slimとかもあるみたい。
+    image: node:20-slim
+    # 環境変数。.envにuserとかpasswordとかかく。
+    # environment:
+      # - MYSQL_SERVER=db
+      # - MYSQL_USER=${DB_USER}
+      # - MYSQL_PASSWORD=${DB_PASS}
+      # - MYSQL_DATABASE=${DB_NAME}
+      # - TZ=${TZ}
+    # docker compose up -d をした時に、コンテナを起動させ続ける
+    # docker domopse down で落とせる(消せる)
+    tty: true
+    # 左がホストで右がdocker???　よくわかんないので両方同じにして、そこにproxyつなげる
+    ports:
+      - '3306:3306'
+    # ボリューム
+    # ホスト側の./apiをコンテナの/appにマウント。/appを./apiにすり替える
+    volumes:
+      - ./api:/app
+    # 起動時のカレントフォルダを指定。これがどう必要なのかは知らん。
+    working_dir: /app
+    # 起動後に実行するコマンド
+    command: npm run dev
+    # コンテナ間のネットワークの名前。デフォルトで同じやつ使うから、この場合なくてもいい。
+    networks:
+      - backend
+    # 依存関係。依存しているコンテナが起動したら、こっちも起動する。
+    # 依存関係を無視して、個別にコンテナを起動するには、--no-depsとか
+    # depends_on:
+    #   - db
+  
+  react-app:
+    image: node:20-slim
+    # ホットリロードのために、react-scriptsのバージョンが5未満なら必要。5以上なら別の方法
+    # apiの方も、同じく必要ではある。
+    # environment:
+    #   - CHOKIDAR_USEPOLLING=true
+    tty: true
+    ports:
+      - '5173:5173'
+    volumes:
+      - ./react-app:/app
+    working_dir: /app
+    command: npm run dev
+    networks:
+      - backend
+    depends_on:
+      - api
+
+# defaultのネットワークを使ってないので。
+networks:
+  backend:
