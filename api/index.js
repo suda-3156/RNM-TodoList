@@ -2,6 +2,19 @@ const express = require('express');
 const app = express();
 const port = 3306;
 
+var data = [
+    {
+        id: 1,
+        name: "test1",
+        done: false,
+    },
+    {
+        id: 2,
+        name: "test2",
+        done: "true",
+    }
+];
+
 app.use(express.json());
 
 app.use((req, res, next) => {
@@ -15,12 +28,13 @@ app.use((req, res, next) => {
   });
 
 app.get("/", (req, res) => {
-    res.send("Hello World!");
+    res.send(data);
 });
 
 app.post("/", (req, res) => {
     try {
-        res.json(req.body);
+        data = req.body.name;
+        res.json(data);
     } catch (error) {
         console.log(error);
     }
