@@ -1,18 +1,19 @@
 import axios from "axios"
-import { Todolist ,Todo, InputForm} from "./Todolist"
+import { Todolist ,InputForm} from "./Todolist"
 import './index.css';
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { isTodos } from "./lib/isTodo";
 
 const sampleList :Todo[] = [
   {
     id: 1,
     name: "test1",
-    done: false,
+    checked: false,
   },
   {
     id: 2,
     name: "test2",
-    done: true,
+    checked: true,
   }
 ]
 
@@ -45,14 +46,25 @@ export default function App() {
   const handleGet1 = async () => {
     await axiosInstance.get('/')
       .then((res) => {
-        console.log(res.data)
-        // const newTask :Todo = {id:} 
-        // const json: React.SetStateAction<Todo[] | null> = res.data;
+        const inData = res.data
+        console.log(inData)
+        if(isTodos(inData)){
+          console.log("inData is type of Todo[]")
+          var newTodos :Todo[] = []
+          inData.map((todo) => {
+            newTodos = [...newTodos, {id: todo.id, name: todo.name, checked: todo.checked}]
+            setList({todos: newTodos})
+          })
+        }
       })
       .catch((err) => {
         console.log(err)
       })
   }
+
+  useEffect(() => {
+    console.log("List has been changed")
+  },[List])
 
   return (
   <>

@@ -1,23 +1,17 @@
 import React from 'react'
 import './index.css'
 
-export type Todo = {
-  id :number,
-  name :string,
-  done :boolean,
-}
-
 type todoListProps = {
   list :Todo[]
 }
 
-const TaskRow: React.FC<Todo> = ({id, name, done}) => {
+const TaskRow: React.FC<Todo> = ({id, name, checked}) => {
   return(
     <div className='w-full h-10 p-4 my-2 bg-slate-100 shadow-lg shadow-gray-200 flex justify-start items-center gap-3 rounded-lg'>
       <input type="checkbox" name="" id="" />
       <p>{id}</p>
       <p>{name}</p>
-      <p>{done}</p>
+      <p>{checked}</p>
     </div>
   )
 }
@@ -25,7 +19,7 @@ const TaskRow: React.FC<Todo> = ({id, name, done}) => {
 export const Todolist: React.FC<todoListProps> = ({list}) => {
   return (
     <div className='w-full h-full py-3'>
-      {list.map((todo :Todo) => <TaskRow id = {todo.id} name={todo.name} done={todo.done} key={todo.id}/>)}
+      {list.map((todo :Todo) => <TaskRow id = {todo.id} name={todo.name} checked={todo.checked} key={todo.id}/>)}
     </div>
   )
 }
