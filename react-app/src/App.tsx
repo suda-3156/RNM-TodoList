@@ -18,7 +18,7 @@ const sampleList :Todo[] = [
 ]
 
 export const axiosInstance = axios.create({
-  baseURL: "http://localhost:3306",
+  baseURL: "http://192.168.1.6:3306",
   headers: {
     'Content-Type': 'application/json',
   },
@@ -44,17 +44,15 @@ export default function App() {
   // }
 
   const handleGet1 = async () => {
-    await axiosInstance.get('/')
+    await axiosInstance.get('/test')
       .then((res) => {
-        const inData = res.data
-        console.log(inData)
-        if(isTodos(inData)){
-          console.log("inData is type of Todo[]")
-          var newTodos :Todo[] = []
-          inData.map((todo) => {
-            newTodos = [...newTodos, {id: todo.id, name: todo.name, checked: todo.checked}]
-            setList({todos: newTodos})
-          })
+        console.log(res.data)
+        if(isTodos(res.data)) {
+          console.log("res.data is type of Todo[]")
+          const newTodos = res.data;
+          setList({todos : newTodos});
+        } else {
+          console.log("res.data is NOT type of Todo[]")
         }
       })
       .catch((err) => {

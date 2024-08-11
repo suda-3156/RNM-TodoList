@@ -6,24 +6,24 @@ var data = [
     {
         id: 1,
         name: "test1",
-        done: false,
+        checked: false,
     },
     {
         id: 2,
         name: "test2",
-        done: true,
+        checked: true,
     },
     {
       id: 3,
       name: "test3",
-      done: false,
+      checked: false,
   }
 ];
 
 app.use(express.json());
 
 app.use((req, res, next) => {
-    res.setHeader("Access-Control-Allow-Origin", "http://localhost:5173");
+    res.setHeader("Access-Control-Allow-Origin", "http://192.168.1.6:5173");
     res.setHeader(
       "Access-Control-Allow-Methods",
       "GET, POST, PUT, PATCH, DELETE, OPTION"
@@ -32,9 +32,9 @@ app.use((req, res, next) => {
     next();
   });
 
-app.get("/", (req, res) => {
+app.get("/test", (req, res) => {
     res.send(data);
-    console.log("hello world")
+    // console.log("hello world")
 });
 
 app.post("/", (req, res) => {

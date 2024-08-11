@@ -2,6 +2,7 @@ const isTodo = (arg: any): arg is Todo => {
   return (
     typeof arg === 'object' &&
     Object.keys(arg).length === 3 &&
+    // arg !== null &&
     typeof arg.id === 'number' &&
     typeof arg.name === 'string' &&
     typeof arg.checked === 'boolean'
