@@ -17,12 +17,12 @@ const sampleList :Todo[] = [
   }
 ]
 
-export const axiosInstance = axios.create({
-  baseURL: "http://192.168.1.6:3306",
-  headers: {
-    'Content-Type': 'application/json',
-  },
-})
+// export const axiosInstance = axios.create({
+//   baseURL: "http://192.168.1.6:3306",
+//   headers: {
+//     'Content-Type': 'application/json',
+//   },
+// })
 
 export const handleClick = async () => {
   const body = JSON.stringify({ name: "hoge", email: "ok@sample.com" })
@@ -37,28 +37,6 @@ export const handleClick = async () => {
 
 export default function App() {
   const [List, setList] = useState<{todos :Todo[]}>({todos : sampleList})
-
-  // const addTodo = () => {
-  //   const preTodos = List.todos;
-  //   const newTodos = [...preTodos, ] 
-  // }
-
-  const handleGet1 = async () => {
-    await axiosInstance.get('/test')
-      .then((res) => {
-        console.log(res.data)
-        if(isTodos(res.data)) {
-          console.log("res.data is type of Todo[]")
-          const newTodos = res.data;
-          setList({todos : newTodos});
-        } else {
-          console.log("res.data is NOT type of Todo[]")
-        }
-      })
-      .catch((err) => {
-        console.log(err)
-      })
-  }
 
   useEffect(() => {
     console.log("List has been changed")
