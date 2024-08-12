@@ -3,3 +3,8 @@ declare type Todo = {
   name :string,
   checked :boolean,
 }
+
+declare type newTodo = {
+  name :string,
+  checked :boolean
+}

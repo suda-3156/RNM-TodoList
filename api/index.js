@@ -32,7 +32,7 @@ app.use((req, res, next) => {
     next();
   });
 
-app.get("/test", (req, res) => {
+app.get("/todolist/api/", (req, res) => {
     res.send(data);
     // console.log("hello world")
 });

@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 @layer components{
-button {
+.btn {
   @apply shadow-lg shadow-gray-200;
     transition: all 0.3s;
     cursor: pointer;

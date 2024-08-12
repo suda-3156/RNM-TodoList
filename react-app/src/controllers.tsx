@@ -1,42 +1,97 @@
 import axios from "axios";
 import { isTodos } from "./lib/isTodo";
 
+/**
+ * API controllers 
+ */
 
 const axiosInstance = axios.create({
-  baseURL: "http://192.168.1.6:3306",
+  baseURL: "http://192.168.1.6:3306/todolist/api",
   headers: {
     'Content-Type': 'application/json',
   },
 })
 
-type getAPIRequest = {
-  url: string,
-  id: string | null,
+/**
+ * GET API
+ */
+
+export type getAPIRequest = {
+  url: '',
+  id: string,
+  crr: Todo[]
 }
 
-type getAIPResponse = {
-  todos: Todo[],
+export type getAIPResponse = {
+  errorType: 'success' | 'systemError' | 'axiosError' | 'jsonError',
+  result : Todo[]
 }
-// type getAPIError = {
-//   errorType: 'systemError' | 'axiosError'
-// }
 
-export const getAPI = async (Request :getAPIRequest) :Promise< getAIPResponse | void > => {
-  await axiosInstance.get(`${Request.url}/${Request.id}`)
-    .then((res) => {
-      console.log(res.data);
-      if(isTodos(res.data)) {
-        console.log("type of res.data is Todo[]")
-        return {todos : res.data}
-      } else {
-        console.log("type of res.data is NOT Todo[]")
-        // alert("jsonが想定の型ではありません。")
-        return 'systemError'
+export const getAPI = async (Request :getAPIRequest) :Promise< getAIPResponse > => {
+  try {
+    const result = await axiosInstance.get(`${Request.url}/${Request.id}`)
+    console.log(result.data);
+    if(isTodos(result.data)) {
+      console.log("type of result.data is Todo[]")
+      return {
+        errorType: 'success',
+        result: result.data
       }
-    })
-    .catch((err) => {
-      console.log(err)
-      return 'axiosError'
-    })
+    } else {
+      return { 
+        errorType: 'jsonError',
+        result: Request.crr
+      }
+    }
+  } catch (error) {
+    console.error(error)
+    if (axios.isAxiosError(error)) {
+      return {
+        errorType: 'axiosError',
+        result: Request.crr
+      }
+    } else {
+      return {
+        errorType: 'systemError',
+        result: Request.crr
+      }
+    }
+  }
 }
 
+/**
+ * POST API
+ */
+
+export type postAPIRequest = {
+  url: '',
+  newTodo: {
+    name: string,
+    checked: boolean
+  }
+}
+export type postAPIResponse = {
+  errorType: 'success' | 'systemError' | 'axiosError' | 'invalidText'
+}
+
+export const postAPI = async (Request :postAPIRequest) :Promise<postAPIResponse> => {
+  if (Request.newTodo.name === '') return {errorType: 'invalidText'}
+  try {
+    const res = await axiosInstance.post(`${Request.url}`, Request.newTodo)
+    console.log(res)
+    return {
+      errorType: 'success'
+    }
+  } catch (error) {
+    console.error(error)
+    if (axios.isAxiosError(error)) {
+      return {
+        errorType: 'axiosError'
+      }
+    } else {
+      return {
+        errorType: 'systemError'
+      }
+    }
+  }
+}
