@@ -12,3 +12,7 @@ const isTodo = (arg: any): arg is Todo => {
 export const isTodos = (arg: any): arg is Todo[] => {
   return Array.isArray(arg) && arg.every(isTodo);
 };
+
+// export const isTodoFilter = (arg: any): arg is todoFilter => {
+//   return arg instanceof todoFilter
+// }

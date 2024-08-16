@@ -1,10 +1,28 @@
+
+// readonly id : number
+
 declare type Todo = {
-  readonly id :number,
-  name :string,
-  checked :boolean,
+  id :string,
+  title :string,
+  completed :boolean,
+  deleted :boolean,
 }
 
 declare type newTodo = {
-  name :string,
-  checked :boolean
+  id: string,
+  title? :string,
 }
+
+declare type TodoId = {
+  id: string,
+}
+
+declare type TodoTitle = {
+  title: string,
+}
+
+declare type todoFilter = 
+  | 'all'
+  | 'completed'
+  | 'incompleted'
+  | 'deleted'

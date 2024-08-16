@@ -1,25 +1,31 @@
+@import url('https://rsms.me/inter/inter.css');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@layer components{
-.btn {
-  @apply shadow-lg shadow-gray-200;
-    transition: all 0.3s;
-    cursor: pointer;
-    &:hover {
-      transform: scale(1.05);
-    }
-    &:active {
-      filter: brightness(0.9);
-      transform: translate(3px, 3px);
-      box-shadow: none;
-    }
-    &:focus-visible {
-      outline: 2px solid #1e293b;
-      /* outline-offset: 3px; */
-    }
+@layer components {
+  .bblock {
+    @apply w-full h-10 bg-white rounded-lg drop-shadow-lg transition-all 
   }
 
+  .focusblock:focus-within {
+    outline: 2px solid black;
+  }
+
+  input {
+    @apply bg-inherit border-none
+  }
+
+  input:focus {
+    outline: none;
+  }
+
+  .pageTitle {
+    font-size: 10rem;
+    font-weight: 800;
+    letter-spacing: -5px;
+    color: black;
+    white-space: nowrap;
+  }
 }
   
