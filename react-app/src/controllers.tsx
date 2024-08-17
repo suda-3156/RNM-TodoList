@@ -1,12 +1,14 @@
 import axios from "axios";
 import { isTodos } from "./lib/isTodo";
 
+const port = import.meta.env.VITE_IP
+
 /**
  * API controllers 
  */
 
 const axiosInstance = axios.create({
-  baseURL: "http://192.168.1.3:3306/api/v1/todoitems",
+  baseURL: `http://${port}:3306/api/v1/todoitems`,
   headers: {
     'Content-Type': 'application/json',
   },

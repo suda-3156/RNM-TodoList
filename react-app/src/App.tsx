@@ -1,19 +1,6 @@
 import { TodoList } from "./Todolist"
 import { Provider } from "jotai"
 
-// const sampleList :Todo[] = [
-//   {
-//     id: 1,
-//     name: "test1",
-//     checked: false,
-//   },
-//   {
-//     id: 2,
-//     name: "test2",
-//     checked: true,
-//   }
-// ]
-
 // // getAPI すべてのTodoを読み込む
 // export const getAllTodos = async () => {
 //   const res :getAIPResponse = await getAPI({url : '', id: '', crr: List.todos})

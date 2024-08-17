@@ -1,7 +1,8 @@
 const express = require('express');
 const app = express();
 const port = 3306;
-const baseURL = "http://192.168.1.3:3306/api/v1/todoitems"
+// const baseURL = `http://${process.env.NODE_IP}:3306/api/v1/todoitems`
+const corsURL = `http://${process.env.NODE_IP}:5174`
 
 var data = [
   {
@@ -33,7 +34,7 @@ var data = [
 app.use(express.json());
 
 app.use((req, res, next) => {
-    res.setHeader("Access-Control-Allow-Origin", "http://192.168.1.3:5174");
+    res.setHeader("Access-Control-Allow-Origin", corsURL);
     res.setHeader(
       "Access-Control-Allow-Methods",
       "GET, POST, PUT, PATCH, DELETE, OPTION"

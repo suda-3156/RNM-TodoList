@@ -2,7 +2,7 @@
 services:
   api:
     # 公式のやつ。2024/8/4はこれが最新っぽい。node versionで調べて出てくるやつ。slimとかもあるみたい。
-    image: node:20-slim
+    image: node:22-slim
     # 環境変数。.envにuserとかpasswordとかかく。
     # environment:
       # - MYSQL_SERVER=db
@@ -33,7 +33,7 @@ services:
     #   - db
   
   react-app:
-    image: node:20-slim
+    image: node:22-slim
     # ホットリロードのために、react-scriptsのバージョンが5未満なら必要。5以上なら別の方法
     # apiの方も、同じく必要ではある。
     # environment:
