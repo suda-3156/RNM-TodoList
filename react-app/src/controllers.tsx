@@ -6,7 +6,7 @@ import { isTodos } from "./lib/isTodo";
  */
 
 const axiosInstance = axios.create({
-  baseURL: "http://192.168.1.6:3306/api/v1/todoitems",
+  baseURL: "http://192.168.1.3:3306/api/v1/todoitems",
   headers: {
     'Content-Type': 'application/json',
   },
@@ -71,7 +71,7 @@ export type putAPIResponse = {
   errorType: 'success' | 'systemError' | 'axiosError' | 'invalidType'
 }
 
-export const postAPI = async (Request :putAPIRequest) :Promise<putAPIResponse> => {
+export const putAPI = async (Request :putAPIRequest) :Promise<putAPIResponse> => {
   if (Request.todo.title === '' || Request.todo.id === '') return {errorType: 'invalidType'}
   try {
     const res = await axiosInstance.put(`${Request.url}`, Request.todo)

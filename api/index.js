@@ -1,29 +1,39 @@
 const express = require('express');
 const app = express();
 const port = 3306;
+const baseURL = "http://192.168.1.3:3306/api/v1/todoitems"
 
 var data = [
-    {
-        id: 1,
-        name: "test1",
-        checked: false,
-    },
-    {
-        id: 2,
-        name: "test2",
-        checked: true,
-    },
-    {
-      id: 3,
-      name: "test3",
-      checked: false,
-  }
+  {
+    id: "1",
+    title: "test1",
+    completed: false,
+    deleted: false,
+  },
+  {
+    id: "2",
+    title: "test2",
+    completed: true,
+    deleted: false,
+  },
+  {
+    id: "3",
+    title: "test3",
+    completed: true,
+    deleted: true,
+  },
+  {
+    id: "4",
+    title: "test4",
+    completed: false,
+    deleted: false,
+  },
 ];
 
 app.use(express.json());
 
 app.use((req, res, next) => {
-    res.setHeader("Access-Control-Allow-Origin", "http://192.168.1.6:5173");
+    res.setHeader("Access-Control-Allow-Origin", "http://192.168.1.3:5174");
     res.setHeader(
       "Access-Control-Allow-Methods",
       "GET, POST, PUT, PATCH, DELETE, OPTION"
@@ -32,7 +42,7 @@ app.use((req, res, next) => {
     next();
   });
 
-app.get("/todolist/api/", (req, res) => {
+app.get('/api/v1/todoitems', (req, res) => {
     res.send(data);
     // console.log("hello world")
 });

@@ -2,10 +2,11 @@ import { atomFamily } from "jotai/utils"
 import { atom, PrimitiveAtom, useAtom, useAtomValue, useSetAtom } from "jotai"
 import { CloseOutlined, PlusOutlined} from "@ant-design/icons"
 import { useForm, FormProvider} from "react-hook-form"
-import React, { useEffect } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import { nanoid } from "nanoid"
-import { Radio } from "antd"
+import { Radio, RadioChangeEvent } from "antd"
 import './index.css'
+import { getAPI, getAIPResponse, getAPIRequest } from "./controllers"
 
 /**
  * todoFamily : todoをしまう
@@ -23,7 +24,7 @@ import './index.css'
 
 const todoAtomFamily = atomFamily<newTodo, PrimitiveAtom<Todo>>(
   (param) => 
-    atom<Todo>({id: param.id, title: param.title || "No title", completed : false, deleted: false }),
+    atom<Todo>({id: param.id, title: param.title || "No title", completed : param.completed || false, deleted: param.deleted || false }),
   (a, b) => a.id === b.id
 )
 const todoAtom = atom<TodoId[]>([])
@@ -42,6 +43,7 @@ const filteredAtom = atom<TodoId[]>((get) => {
       return todos
   }
 })
+// const firstLoad = atom<boolean>(false)
 
 const TodoItem = (prop: TodoId) => {
   const [item, setItem] = useAtom(todoAtomFamily({id: prop.id}))
@@ -81,25 +83,15 @@ const TodoItem = (prop: TodoId) => {
 
 const Filter = () => {
   const [filter ,setFilter] = useAtom(filterAtom)
+
+  const handleRadioChange = (e: RadioChangeEvent) => {
+    const value = e.target.value as 'all' | 'completed' | 'incompleted'
+    setFilter(value)
+  }
   return (
     <div className="mb-5">
       <Radio.Group 
-        onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-          switch(e.target.value) {
-            case 'all':
-              setFilter('all')
-              break
-            case 'completed':
-              setFilter('completed')
-              break
-            case 'incompleted':
-              setFilter('incompleted')
-              break
-            default :
-            setFilter('all')
-            break
-          }
-        }}
+        onChange={handleRadioChange}
         value={filter}
       >
         <Radio value="all">All</Radio>
@@ -148,6 +140,40 @@ const CreateTodoForm = () => {
 
 export const TodoList = () => {
   const filteredTodoIds = useAtomValue(filteredAtom)
+  const [todoIds, setTodoIds] = useAtom(todoAtom)
+  const isFirstLoad = useRef(true); // 初回ロードを追跡
+  
+
+  useEffect(() => {
+    if ( isFirstLoad.current ) {      
+      getAPI({url: '', id: ''})
+        .then((res) => {
+          switch(res.errorType) {
+            case "success":
+              const todos :Todo[] = res.result ?? []
+              todos.map((todo) => {
+                if (!todoIds.some(item => item.id === todo.id)) {
+                  setTodoIds((prev) => [...prev, { id: todo.id }])
+                  todoAtomFamily(todo)
+                  console.log(todo)
+                }
+              })
+              break
+            case "systemError":
+              alert("systemError")
+              break
+            case "axiosError":
+              alert("axiosError")
+              break
+            case "jsonError":
+              alert("jsonError")
+              break
+          }
+        })
+        .catch(error => console.log(error))
+        isFirstLoad.current = false; // 初回ロードを終了
+    }
+  },[setTodoIds])
 
   return (
     <div className="w-[500px] flex flex-col justify-center items-center gap-y-4">

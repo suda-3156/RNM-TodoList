@@ -11,6 +11,8 @@ declare type Todo = {
 declare type newTodo = {
   id: string,
   title? :string,
+  completed? :boolean,
+  deleted? :boolean,
 }
 
 declare type TodoId = {
