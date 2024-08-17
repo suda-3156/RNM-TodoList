@@ -1,11 +1,12 @@
 const isTodo = (arg: any): arg is Todo => {
   return (
     typeof arg === 'object' &&
-    Object.keys(arg).length === 3 &&
+    Object.keys(arg).length === 4 &&
     // arg !== null &&
-    typeof arg.id === 'number' &&
-    typeof arg.name === 'string' &&
-    typeof arg.checked === 'boolean'
+    typeof arg.id === 'string' &&
+    typeof arg.title === 'string' &&
+    typeof arg.completed === 'boolean' &&
+    typeof arg.deleted === 'boolean'
   );
 };
 

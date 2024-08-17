@@ -1,4 +1,5 @@
 import { TodoList } from "./Todolist"
+import { Provider } from "jotai"
 
 // const sampleList :Todo[] = [
 //   {
@@ -46,7 +47,9 @@ export default function App() {
   
   return (
     <div className="w-full p-10 bg-white flex flex-col justify-center items-center">
-      <TodoList />
+      <Provider>
+        <TodoList />
+      </Provider>
     </div>
   )
 }
