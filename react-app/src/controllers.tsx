@@ -17,12 +17,10 @@ const axiosInstance = axios.create({
 /**
  * GET API
  */
-
 export type getAPIRequest = {
   url: '',
   id: string,
 }
-
 export type getAIPResponse = {
   errorType: 'success' | 'systemError' | 'axiosError' | 'jsonError',
   result : Todo[] | null
@@ -63,18 +61,17 @@ export const getAPI = async (Request :getAPIRequest) :Promise< getAIPResponse > 
 /**
  * PUT API
  */
-
 export type putAPIRequest = {
-  url: '',
+  url: string,
   todo: Todo
 }
-
 export type putAPIResponse = {
   errorType: 'success' | 'systemError' | 'axiosError' | 'invalidType'
 }
 
 export const putAPI = async (Request :putAPIRequest) :Promise<putAPIResponse> => {
   if (Request.todo.title === '' || Request.todo.id === '') return {errorType: 'invalidType'}
+  console.log("run putAPI with url : " + Request.url)
   try {
     const res = await axiosInstance.put(`${Request.url}`, Request.todo)
     console.log(res)

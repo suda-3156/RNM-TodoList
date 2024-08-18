@@ -2,11 +2,11 @@ import { atomFamily } from "jotai/utils"
 import { atom, PrimitiveAtom, useAtom, useAtomValue, useSetAtom } from "jotai"
 import { CloseOutlined, PlusOutlined} from "@ant-design/icons"
 import { useForm, FormProvider} from "react-hook-form"
-import React, { useEffect, useRef, useState } from "react"
+import { useEffect, useRef } from "react"
 import { nanoid } from "nanoid"
 import { Radio, RadioChangeEvent } from "antd"
 import './index.css'
-import { getAPI, getAIPResponse, getAPIRequest } from "./controllers"
+import { getAPI, putAPI } from "./controllers"
 
 /**
  * todoFamily : todoをしまう
@@ -47,36 +47,58 @@ const filteredAtom = atom<TodoId[]>((get) => {
 
 const TodoItem = (prop: TodoId) => {
   const [item, setItem] = useAtom(todoAtomFamily({id: prop.id}))
+  const methods = useForm<TodoTitle>()
   const toogelCompleted = () => {
     setItem((prev) => ({...prev, completed: !prev.completed}))
+    putAPI({url: `/${item.id}`, todo: item})
+      .then((response) => console.log("isCompleted updated : " + response))
+      .catch((error) => console.log(error))
   }
   const handleDelete = () => {
     console.log("deleted")
     setItem((prev) => ({...prev, deleted: true}))
+    putAPI({url: `/${item.id}`, todo: item})
+      .then((response) => console.log("isDeleted updated : " + response))
+      .catch((error) => console.log(error))
   }
-  const handleTitle = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setItem((prev) => ({...prev, title: event.target.value}))
-    console.log(item.title)
+  const onSubmit = (data: TodoTitle) => {
+    const newTitle = data.title.trim() || "No title"
+    console.log("newTitle: " + newTitle)
+    setItem((prev) =>  ({...prev, title:newTitle}))     
+    console.log("title: " + item.title)
+    putAPI({url: `/${item.id}`, todo: item})
+      .then((response) => console.log("title updated : " + response))
+      .catch((error) => console.log(error))
   }
-  if( item.deleted ) return
+
+  if( item.deleted ) return 
 
   return (
     <div className="bblock flex justify-center items-center gap-x-2 px-2">
-      <input
-        id="isCompleted" 
-        type="checkbox"
-        checked={item.completed}
-        onChange={toogelCompleted}
-      />
-      <input
-        type="text"
-        id="title"
-        defaultValue={item.title}
-        onChange={handleTitle}
-        style={{ textDecoration: item.completed ? 'line-through' : '' }}
-        className="w-10/12"
-      />
-      <CloseOutlined onClick={handleDelete} className="ml-auto"/>
+        <input
+          id="isCompleted" 
+          type="checkbox"
+          checked={item.completed}
+          onChange={toogelCompleted}
+        />
+      <FormProvider {...methods}>
+        <form onSubmit={methods.handleSubmit(onSubmit)} className="w-11/12">
+          <input
+            type="text"
+            id="title"
+            // defaultValue={item.title}
+            key={item.title}
+            defaultValue={item.title}  // valueをwatchで管理
+            // onChange={(e) => {
+            //   methods.setValue("title", e.target.value);
+            // }}
+            style={{ textDecoration: item.completed ? 'line-through' : '' }}
+            className="w-full"
+            {...methods.register('title')}
+          />
+        </form>
+        <CloseOutlined onClick={handleDelete} className="ml-auto"/>
+      </FormProvider>
     </div>
   )
 }
@@ -103,18 +125,23 @@ const Filter = () => {
 }
 
 const CreateTodoForm = () => {
-  // ぜったいref使ったほうが良くて草
   const methods = useForm<TodoTitle>();
   const setTodoAtom = useSetAtom(todoAtom)
 
   // formの値から新しいTodoを作る
-  // 作れたら、formをresetする
-  const onSubmit = (data:TodoTitle) => {
-    console.log(data.title)
-    const newId = nanoid()
-    setTodoAtom((prev) => ([...prev, {id: newId}]))
-    todoAtomFamily({id: newId, title: data.title.trim()})
-    methods.reset()
+  const onSubmit = async (data:TodoTitle) => {
+    try {
+      const newId = nanoid()
+      const newTitle = data.title.trim() || "No title"
+      setTodoAtom((prev) => ([...prev, {id: newId}]))
+      todoAtomFamily({id: newId, title: newTitle})
+      await putAPI({url: `/${newId}`, todo: {id: newId, title: newTitle, completed: false, deleted: false}})
+      // await putAPI({url: `/${newId}`, todo: useAtomValue(todoAtomFamily({id: newId}))}) // こっちはinvalid hooks 
+    } catch (error) {
+      console.error("Failed to submit todo:", error )
+    } finally {
+      methods.reset()
+    }
   }
   // エラーメッセージを入れる
   return (
@@ -143,7 +170,6 @@ export const TodoList = () => {
   const [todoIds, setTodoIds] = useAtom(todoAtom)
   const isFirstLoad = useRef(true); // 初回ロードを追跡
   
-
   useEffect(() => {
     if ( isFirstLoad.current ) {      
       getAPI({url: '', id: ''})
@@ -159,14 +185,8 @@ export const TodoList = () => {
                 }
               })
               break
-            case "systemError":
-              alert("systemError")
-              break
-            case "axiosError":
-              alert("axiosError")
-              break
-            case "jsonError":
-              alert("jsonError")
+            default:
+              alert(res.errorType)
               break
           }
         })
