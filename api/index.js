@@ -69,7 +69,6 @@ app.put("/api/v1/todoitems/:id", (req, res) => {
         todo.deleted = newTodo.deleted
         res.send("updated todo with id : " + id)
       }
-      res.send("unknown error 1")
     })
   } else {
     const newData = [...data, newTodo]
@@ -78,3 +77,7 @@ app.put("/api/v1/todoitems/:id", (req, res) => {
   }
   res.send("unknown error 2")
 });
+
+app.listen(port, () => {
+    console.log(`Example app listenig on port ${port}`);
+})
