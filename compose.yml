@@ -1,21 +1,50 @@
 
 services:
+  db:
+    # 起動するイメージを指定
+    image: mysql:8.0.33
+    restart: always
+    tty: true
+    # 環境変数を設定
+    environment:
+      # - MYSQL_ROOT_HOST=${DB_ROOT_HOST}
+      - MYSQL_DATABASE=${DB_NAME}
+      - MYSQL_USER=${DB_USER}
+      - MYSQL_PASSWORD=${DB_PASS}
+      - MYSQL_ROOT_PASSWORD=${DB_PASS}
+      - TZ=${TZ}
+
+    # ホスト側のポート:コンテナのポート
+    ports:
+      - '3306:3306'
+
+    # ボリュームバインド
+    volumes:
+      - ./db/conf:/etc/mysql/conf.d/:ro
+      - mysqldata2:/var/lib/mysql
+      - ./db/logs:/var/log/mysql
+
+    #使用するネットワーク
+    networks:
+      - backend
+
   api:
     # 公式のやつ。2024/8/4はこれが最新っぽい。node versionで調べて出てくるやつ。slimとかもあるみたい。
     image: node:22-slim
     # 環境変数。.envにuserとかpasswordとかかく。
-    # environment:
-      # - MYSQL_SERVER=db
-      # - MYSQL_USER=${DB_USER}
-      # - MYSQL_PASSWORD=${DB_PASS}
-      # - MYSQL_DATABASE=${DB_NAME}
-      # - TZ=${TZ}
+    environment:
+      - MYSQL_SERVER=db
+      - MYSQL_USER=${DB_USER}
+      - MYSQL_PASSWORD=${DB_PASS}
+      - MYSQL_DATABASE=${DB_NAME}
+      - TZ=${TZ}
+      - CHOKIDAR_USEPOLLING=true
     # docker compose up -d をした時に、コンテナを起動させ続ける
     # docker domopse down で落とせる(消せる)
     tty: true
     # 左がホストで右がdocker???　よくわかんないので両方同じにして、そこにproxyつなげる
     ports:
-      - '3306:3306'
+      - '3001:3001'
     # ボリューム
     # ホスト側の./apiをコンテナの/appにマウント。/appを./apiにすり替える
     volumes:
@@ -29,8 +58,8 @@ services:
       - backend
     # 依存関係。依存しているコンテナが起動したら、こっちも起動する。
     # 依存関係を無視して、個別にコンテナを起動するには、--no-depsとか
-    # depends_on:
-    #   - db
+    depends_on:
+      - db
   
   react-app:
     image: node:22-slim
@@ -53,3 +82,6 @@ services:
 # defaultのネットワークを使ってないので。
 networks:
   backend:
+
+volumes:
+  mysqldata2:

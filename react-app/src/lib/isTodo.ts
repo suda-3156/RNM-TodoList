@@ -5,8 +5,8 @@ const isTodo = (arg: any): arg is Todo => {
     // arg !== null &&
     typeof arg.id === 'string' &&
     typeof arg.title === 'string' &&
-    typeof arg.completed === 'boolean' &&
-    typeof arg.deleted === 'boolean'
+    ( typeof arg.completed === 'number' || typeof arg.completed === 'boolean' ) &&
+    ( typeof arg.deleted === 'number' || typeof arg.deleted === 'boolean' )
   );
 };
 

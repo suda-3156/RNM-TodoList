@@ -3,12 +3,14 @@ import { isTodos } from "./lib/isTodo";
 
 const port = import.meta.env.VITE_IP
 
+
+
 /**
  * API controllers 
  */
 
 const axiosInstance = axios.create({
-  baseURL: `http://${port}:3306/api/v1/todoitems`,
+  baseURL: `http://${port}:3001/api/v1/todoitems`,
   headers: {
     'Content-Type': 'application/json',
   },
@@ -37,6 +39,7 @@ export const getAPI = async (Request :getAPIRequest) :Promise< getAIPResponse > 
         result: result.data
       }
     } else {
+      console.log(result.data)
       return { 
         errorType: 'jsonError',
         result: null
@@ -74,6 +77,40 @@ export const putAPI = async (Request :putAPIRequest) :Promise<putAPIResponse> =>
   console.log("run putAPI with url : " + Request.url)
   try {
     const res = await axiosInstance.put(`${Request.url}`, Request.todo)
+    console.log(res)
+    return {
+      errorType: 'success'
+    }
+  } catch (error) {
+    console.error(error)
+    if (axios.isAxiosError(error)) {
+      return {
+        errorType: 'axiosError'
+      }
+    } else {
+      return {
+        errorType: 'systemError'
+      }
+    }
+  }
+}
+
+/**
+ * POST API
+ */
+export type postAPIRequest = {
+  url: string,
+  todo: Todo
+}
+export type postAPIResponse = {
+  errorType: 'success' | 'systemError' | 'axiosError' | 'invalidType'
+}
+
+export const postAPI = async (Request :postAPIRequest) :Promise<postAPIResponse> => {
+  if (Request.todo.id === '') return {errorType: 'invalidType'}
+  console.log("run postAPI with url : " + Request.url)
+  try {
+    const res = await axiosInstance.post(`${Request.url}`, Request.todo)
     console.log(res)
     return {
       errorType: 'success'

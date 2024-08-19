@@ -6,7 +6,7 @@ import { useEffect, useRef } from "react"
 import { nanoid } from "nanoid"
 import { Radio, RadioChangeEvent } from "antd"
 import './index.css'
-import { getAPI, putAPI } from "./controllers"
+import { getAPI, putAPI, postAPI, deleteAPI } from "./controllers"
 
 /**
  * todoFamily : todoをしまう
@@ -46,30 +46,45 @@ const filteredAtom = atom<TodoId[]>((get) => {
 // const firstLoad = atom<boolean>(false)
 
 const TodoItem = (prop: TodoId) => {
+  const isFirstRender = useRef(true);
+
   const [item, setItem] = useAtom(todoAtomFamily({id: prop.id}))
   const methods = useForm<TodoTitle>()
   const toogelCompleted = () => {
     setItem((prev) => ({...prev, completed: !prev.completed}))
-    putAPI({url: `/${item.id}`, todo: item})
-      .then((response) => console.log("isCompleted updated : " + response))
-      .catch((error) => console.log(error))
+    // putAPI({url: `/${item.id}`, todo: item})
+    //   .then((response) => console.log("isCompleted updated : " + response))
+    //   .catch((error) => console.log(error))
   }
   const handleDelete = () => {
     console.log("deleted")
     setItem((prev) => ({...prev, deleted: true}))
-    putAPI({url: `/${item.id}`, todo: item})
-      .then((response) => console.log("isDeleted updated : " + response))
-      .catch((error) => console.log(error))
+    // putAPI({url: `/${item.id}`, todo: item})
+    //   .then((response) => console.log("isDeleted updated : " + response))
+    //   .catch((error) => console.log(error))
   }
   const onSubmit = (data: TodoTitle) => {
     const newTitle = data.title.trim() || "No title"
     console.log("newTitle: " + newTitle)
     setItem((prev) =>  ({...prev, title:newTitle}))     
     console.log("title: " + item.title)
-    putAPI({url: `/${item.id}`, todo: item})
-      .then((response) => console.log("title updated : " + response))
-      .catch((error) => console.log(error))
+    // putAPI({url: `/${item.id}`, todo: item})
+    //   .then((response) => console.log("title updated : " + response))
+    //   .catch((error) => console.log(error))
   }
+
+  useEffect(() => {
+
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      return;
+    }
+
+    putAPI({url: `/${item.id}`, todo: item})
+      .then((response) => console.log("Item Updated : " + response))
+      .catch((error) => console.log(error))
+      
+  },[item])
 
   if( item.deleted ) return 
 
@@ -135,7 +150,7 @@ const CreateTodoForm = () => {
       const newTitle = data.title.trim() || "No title"
       setTodoAtom((prev) => ([...prev, {id: newId}]))
       todoAtomFamily({id: newId, title: newTitle})
-      await putAPI({url: `/${newId}`, todo: {id: newId, title: newTitle, completed: false, deleted: false}})
+      await postAPI({url: "", todo: {id: newId, title: newTitle, completed: false, deleted: false}})
       // await putAPI({url: `/${newId}`, todo: useAtomValue(todoAtomFamily({id: newId}))}) // こっちはinvalid hooks 
     } catch (error) {
       console.error("Failed to submit todo:", error )

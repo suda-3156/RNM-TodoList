@@ -28,3 +28,4 @@ declare type todoFilter =
   | 'completed'
   | 'incompleted'
   | 'deleted'
+

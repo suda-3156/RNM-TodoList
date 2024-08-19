@@ -1,0 +1,271 @@
+2024-08-18T14:32:51.778845-00:00 0 [Warning] [MY-011068] [Server] The syntax '--skip-host-cache' is deprecated and will be removed in a future release. Please use SET GLOBAL host_cache_size=0 instead.
+2024-08-18T14:32:51.778888-00:00 0 [Warning] [MY-010918] [Server] 'default_authentication_plugin' is deprecated and will be removed in a future release. Please use authentication_policy instead.
+2024-08-18T14:32:51.778905-00:00 0 [System] [MY-013169] [Server] /usr/sbin/mysqld (mysqld 8.0.33) initializing of server in progress as process 81
+2024-08-18T14:32:51.812267-00:00 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2024-08-18T14:32:51.990379-00:00 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+2024-08-18T14:32:52.628038-00:00 6 [Warning] [MY-010453] [Server] root@localhost is created with an empty password ! Please consider switching off the --initialize-insecure option.
+2024-08-18T14:32:54.981009-00:00 0 [Warning] [MY-011068] [Server] The syntax '--skip-host-cache' is deprecated and will be removed in a future release. Please use SET GLOBAL host_cache_size=0 instead.
+2024-08-18T14:32:54.981994-00:00 0 [Warning] [MY-010918] [Server] 'default_authentication_plugin' is deprecated and will be removed in a future release. Please use authentication_policy instead.
+2024-08-18T14:32:54.982006-00:00 0 [System] [MY-010116] [Server] /usr/sbin/mysqld (mysqld 8.0.33) starting as process 125
+2024-08-18T14:32:54.989413-00:00 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2024-08-18T14:32:55.065513-00:00 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+2024-08-18T14:32:55.142399-00:00 0 [Warning] [MY-010068] [Server] CA certificate ca.pem is self signed.
+2024-08-18T14:32:55.142468-00:00 0 [System] [MY-013602] [Server] Channel mysql_main configured to support TLS. Encrypted connections are now supported for this channel.
+2024-08-18T14:32:55.143288-00:00 0 [Warning] [MY-011810] [Server] Insecure configuration for --pid-file: Location '/var/run/mysqld' in the path is accessible to all OS users. Consider choosing a different directory.
+2024-08-18T14:32:55.148338-00:00 0 [System] [MY-011323] [Server] X Plugin ready for connections. Socket: /var/run/mysqld/mysqlx.sock
+2024-08-18T14:32:55.148350-00:00 0 [System] [MY-010931] [Server] /usr/sbin/mysqld: ready for connections. Version: '8.0.33'  socket: '/var/run/mysqld/mysqld.sock'  port: 0  MySQL Community Server - GPL.
+2024-08-18T14:32:56.294872-00:00 13 [System] [MY-013172] [Server] Received SHUTDOWN from user root. Shutting down mysqld (Version: 8.0.33).
+2024-08-18T14:32:57.734604-00:00 0 [System] [MY-010910] [Server] /usr/sbin/mysqld: Shutdown complete (mysqld 8.0.33)  MySQL Community Server - GPL.
+2024-08-18T14:32:58.460562-00:00 0 [Warning] [MY-011068] [Server] The syntax '--skip-host-cache' is deprecated and will be removed in a future release. Please use SET GLOBAL host_cache_size=0 instead.
+2024-08-18T14:32:58.460798-00:00 0 [Warning] [MY-010918] [Server] 'default_authentication_plugin' is deprecated and will be removed in a future release. Please use authentication_policy instead.
+2024-08-18T14:32:58.460808-00:00 0 [System] [MY-010116] [Server] /usr/sbin/mysqld (mysqld 8.0.33) starting as process 1
+2024-08-18T14:32:58.464126-00:00 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2024-08-18T14:32:58.505176-00:00 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+2024-08-18T14:32:58.616564-00:00 0 [Warning] [MY-010068] [Server] CA certificate ca.pem is self signed.
+2024-08-18T14:32:58.616659-00:00 0 [System] [MY-013602] [Server] Channel mysql_main configured to support TLS. Encrypted connections are now supported for this channel.
+2024-08-18T14:32:58.617553-00:00 0 [Warning] [MY-011810] [Server] Insecure configuration for --pid-file: Location '/var/run/mysqld' in the path is accessible to all OS users. Consider choosing a different directory.
+2024-08-18T14:32:58.623970-00:00 0 [System] [MY-011323] [Server] X Plugin ready for connections. Bind-address: '::' port: 33060, socket: /var/run/mysqld/mysqlx.sock
+2024-08-18T14:32:58.623982-00:00 0 [System] [MY-010931] [Server] /usr/sbin/mysqld: ready for connections. Version: '8.0.33'  socket: '/var/run/mysqld/mysqld.sock'  port: 3306  MySQL Community Server - GPL.
+2024-08-18T14:35:21.420777-00:00 0 [System] [MY-013172] [Server] Received SHUTDOWN from user <via user signal>. Shutting down mysqld (Version: 8.0.33).
+2024-08-18T14:35:22.698007-00:00 0 [System] [MY-010910] [Server] /usr/sbin/mysqld: Shutdown complete (mysqld 8.0.33)  MySQL Community Server - GPL.
+2024-08-18T23:43:54.557847+09:00 0 [System] [MY-015015] [Server] MySQL Server - start.
+2024-08-18T23:43:54.782559+09:00 0 [System] [MY-010116] [Server] /usr/sbin/mysqld (mysqld 9.0.1) starting as process 1
+2024-08-18T23:43:54.789786+09:00 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2024-08-18T23:43:54.941425+09:00 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+2024-08-18T23:43:54.959829+09:00 1 [ERROR] [MY-014060] [Server] Invalid MySQL server upgrade: Cannot upgrade from 80033 to 90001. Upgrade to next major version is only allowed from the last LTS release, which version 80033 is not.
+2024-08-18T23:43:54.960430+09:00 0 [ERROR] [MY-010020] [Server] Data Dictionary initialization failed.
+2024-08-18T23:43:54.960791+09:00 0 [ERROR] [MY-010119] [Server] Aborting
+2024-08-18T23:43:55.475056+09:00 0 [System] [MY-010910] [Server] /usr/sbin/mysqld: Shutdown complete (mysqld 9.0.1)  MySQL Community Server - GPL.
+2024-08-18T23:43:55.475154+09:00 0 [System] [MY-015016] [Server] MySQL Server - end.
+2024-08-18T23:44:57.995369+09:00 0 [System] [MY-015015] [Server] MySQL Server - start.
+2024-08-18T23:44:58.138986+09:00 0 [System] [MY-010116] [Server] /usr/sbin/mysqld (mysqld 9.0.1) starting as process 1
+2024-08-18T23:44:58.145672+09:00 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2024-08-18T23:44:58.213444+09:00 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+2024-08-18T23:44:58.218334+09:00 1 [ERROR] [MY-014060] [Server] Invalid MySQL server upgrade: Cannot upgrade from 80033 to 90001. Upgrade to next major version is only allowed from the last LTS release, which version 80033 is not.
+2024-08-18T23:44:58.218590+09:00 0 [ERROR] [MY-010020] [Server] Data Dictionary initialization failed.
+2024-08-18T23:44:58.218669+09:00 0 [ERROR] [MY-010119] [Server] Aborting
+2024-08-18T23:44:58.747577+09:00 0 [System] [MY-010910] [Server] /usr/sbin/mysqld: Shutdown complete (mysqld 9.0.1)  MySQL Community Server - GPL.
+2024-08-18T23:44:58.747728+09:00 0 [System] [MY-015016] [Server] MySQL Server - end.
+2024-08-18T23:44:59.244026+09:00 0 [System] [MY-015015] [Server] MySQL Server - start.
+2024-08-18T23:44:59.387938+09:00 0 [System] [MY-010116] [Server] /usr/sbin/mysqld (mysqld 9.0.1) starting as process 1
+2024-08-18T23:44:59.391201+09:00 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2024-08-18T23:44:59.457633+09:00 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+2024-08-18T23:44:59.462328+09:00 1 [ERROR] [MY-014060] [Server] Invalid MySQL server upgrade: Cannot upgrade from 80033 to 90001. Upgrade to next major version is only allowed from the last LTS release, which version 80033 is not.
+2024-08-18T23:44:59.463084+09:00 0 [ERROR] [MY-010020] [Server] Data Dictionary initialization failed.
+2024-08-18T23:44:59.464041+09:00 0 [ERROR] [MY-010119] [Server] Aborting
+2024-08-18T23:44:59.991251+09:00 0 [System] [MY-010910] [Server] /usr/sbin/mysqld: Shutdown complete (mysqld 9.0.1)  MySQL Community Server - GPL.
+2024-08-18T23:44:59.991444+09:00 0 [System] [MY-015016] [Server] MySQL Server - end.
+2024-08-18T23:45:00.537822+09:00 0 [System] [MY-015015] [Server] MySQL Server - start.
+2024-08-18T23:45:00.676576+09:00 0 [System] [MY-010116] [Server] /usr/sbin/mysqld (mysqld 9.0.1) starting as process 1
+2024-08-18T23:45:00.679804+09:00 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2024-08-18T23:45:00.735510+09:00 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+2024-08-18T23:45:00.737716+09:00 1 [ERROR] [MY-014060] [Server] Invalid MySQL server upgrade: Cannot upgrade from 80033 to 90001. Upgrade to next major version is only allowed from the last LTS release, which version 80033 is not.
+2024-08-18T23:45:00.737837+09:00 0 [ERROR] [MY-010020] [Server] Data Dictionary initialization failed.
+2024-08-18T23:45:00.737881+09:00 0 [ERROR] [MY-010119] [Server] Aborting
+2024-08-18T23:45:01.266991+09:00 0 [System] [MY-010910] [Server] /usr/sbin/mysqld: Shutdown complete (mysqld 9.0.1)  MySQL Community Server - GPL.
+2024-08-18T23:45:01.267193+09:00 0 [System] [MY-015016] [Server] MySQL Server - end.
+2024-08-18T23:45:02.008677+09:00 0 [System] [MY-015015] [Server] MySQL Server - start.
+2024-08-18T23:45:02.147222+09:00 0 [System] [MY-010116] [Server] /usr/sbin/mysqld (mysqld 9.0.1) starting as process 1
+2024-08-18T23:45:02.150436+09:00 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2024-08-18T23:45:02.204318+09:00 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+2024-08-18T23:45:02.206541+09:00 1 [ERROR] [MY-014060] [Server] Invalid MySQL server upgrade: Cannot upgrade from 80033 to 90001. Upgrade to next major version is only allowed from the last LTS release, which version 80033 is not.
+2024-08-18T23:45:02.206648+09:00 0 [ERROR] [MY-010020] [Server] Data Dictionary initialization failed.
+2024-08-18T23:45:02.206694+09:00 0 [ERROR] [MY-010119] [Server] Aborting
+2024-08-18T23:45:02.736351+09:00 0 [System] [MY-010910] [Server] /usr/sbin/mysqld: Shutdown complete (mysqld 9.0.1)  MySQL Community Server - GPL.
+2024-08-18T23:45:02.736551+09:00 0 [System] [MY-015016] [Server] MySQL Server - end.
+2024-08-18T23:45:03.871881+09:00 0 [System] [MY-015015] [Server] MySQL Server - start.
+2024-08-18T23:45:04.007521+09:00 0 [System] [MY-010116] [Server] /usr/sbin/mysqld (mysqld 9.0.1) starting as process 1
+2024-08-18T23:45:04.010943+09:00 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2024-08-18T23:45:04.064268+09:00 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+2024-08-18T23:45:04.066520+09:00 1 [ERROR] [MY-014060] [Server] Invalid MySQL server upgrade: Cannot upgrade from 80033 to 90001. Upgrade to next major version is only allowed from the last LTS release, which version 80033 is not.
+2024-08-18T23:45:04.066636+09:00 0 [ERROR] [MY-010020] [Server] Data Dictionary initialization failed.
+2024-08-18T23:45:04.066682+09:00 0 [ERROR] [MY-010119] [Server] Aborting
+2024-08-18T23:45:04.595353+09:00 0 [System] [MY-010910] [Server] /usr/sbin/mysqld: Shutdown complete (mysqld 9.0.1)  MySQL Community Server - GPL.
+2024-08-18T23:45:04.595579+09:00 0 [System] [MY-015016] [Server] MySQL Server - end.
+2024-08-18T23:45:06.528638+09:00 0 [System] [MY-015015] [Server] MySQL Server - start.
+2024-08-18T23:45:06.666375+09:00 0 [System] [MY-010116] [Server] /usr/sbin/mysqld (mysqld 9.0.1) starting as process 1
+2024-08-18T23:45:06.669683+09:00 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2024-08-18T23:45:06.721722+09:00 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+2024-08-18T23:45:06.723941+09:00 1 [ERROR] [MY-014060] [Server] Invalid MySQL server upgrade: Cannot upgrade from 80033 to 90001. Upgrade to next major version is only allowed from the last LTS release, which version 80033 is not.
+2024-08-18T23:45:06.724102+09:00 0 [ERROR] [MY-010020] [Server] Data Dictionary initialization failed.
+2024-08-18T23:45:06.724151+09:00 0 [ERROR] [MY-010119] [Server] Aborting
+2024-08-18T23:45:07.256518+09:00 0 [System] [MY-010910] [Server] /usr/sbin/mysqld: Shutdown complete (mysqld 9.0.1)  MySQL Community Server - GPL.
+2024-08-18T23:45:07.256755+09:00 0 [System] [MY-015016] [Server] MySQL Server - end.
+2024-08-18T23:45:10.811950+09:00 0 [System] [MY-015015] [Server] MySQL Server - start.
+2024-08-18T23:45:10.947547+09:00 0 [System] [MY-010116] [Server] /usr/sbin/mysqld (mysqld 9.0.1) starting as process 1
+2024-08-18T23:45:10.950743+09:00 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2024-08-18T23:45:11.008598+09:00 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+2024-08-18T23:45:11.012488+09:00 1 [ERROR] [MY-014060] [Server] Invalid MySQL server upgrade: Cannot upgrade from 80033 to 90001. Upgrade to next major version is only allowed from the last LTS release, which version 80033 is not.
+2024-08-18T23:45:11.012637+09:00 0 [ERROR] [MY-010020] [Server] Data Dictionary initialization failed.
+2024-08-18T23:45:11.012685+09:00 0 [ERROR] [MY-010119] [Server] Aborting
+2024-08-18T23:45:11.541401+09:00 0 [System] [MY-010910] [Server] /usr/sbin/mysqld: Shutdown complete (mysqld 9.0.1)  MySQL Community Server - GPL.
+2024-08-18T23:45:11.541625+09:00 0 [System] [MY-015016] [Server] MySQL Server - end.
+2024-08-18T23:45:18.279763+09:00 0 [System] [MY-015015] [Server] MySQL Server - start.
+2024-08-18T23:45:18.417924+09:00 0 [System] [MY-010116] [Server] /usr/sbin/mysqld (mysqld 9.0.1) starting as process 1
+2024-08-18T23:45:18.421182+09:00 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2024-08-18T23:45:18.473087+09:00 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+2024-08-18T23:45:18.475336+09:00 1 [ERROR] [MY-014060] [Server] Invalid MySQL server upgrade: Cannot upgrade from 80033 to 90001. Upgrade to next major version is only allowed from the last LTS release, which version 80033 is not.
+2024-08-18T23:45:18.475470+09:00 0 [ERROR] [MY-010020] [Server] Data Dictionary initialization failed.
+2024-08-18T23:45:18.475520+09:00 0 [ERROR] [MY-010119] [Server] Aborting
+2024-08-18T23:45:19.001372+09:00 0 [System] [MY-010910] [Server] /usr/sbin/mysqld: Shutdown complete (mysqld 9.0.1)  MySQL Community Server - GPL.
+2024-08-18T23:45:19.001550+09:00 0 [System] [MY-015016] [Server] MySQL Server - end.
+2024-08-18T23:45:32.142784+09:00 0 [System] [MY-015015] [Server] MySQL Server - start.
+2024-08-18T23:45:32.277983+09:00 0 [System] [MY-010116] [Server] /usr/sbin/mysqld (mysqld 9.0.1) starting as process 1
+2024-08-18T23:45:32.281363+09:00 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2024-08-18T23:45:32.334400+09:00 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+2024-08-18T23:45:32.336664+09:00 1 [ERROR] [MY-014060] [Server] Invalid MySQL server upgrade: Cannot upgrade from 80033 to 90001. Upgrade to next major version is only allowed from the last LTS release, which version 80033 is not.
+2024-08-18T23:45:32.336777+09:00 0 [ERROR] [MY-010020] [Server] Data Dictionary initialization failed.
+2024-08-18T23:45:32.336824+09:00 0 [ERROR] [MY-010119] [Server] Aborting
+2024-08-18T23:45:32.863609+09:00 0 [System] [MY-010910] [Server] /usr/sbin/mysqld: Shutdown complete (mysqld 9.0.1)  MySQL Community Server - GPL.
+2024-08-18T23:45:32.863837+09:00 0 [System] [MY-015016] [Server] MySQL Server - end.
+2024-08-18T23:45:41.956331+09:00 0 [System] [MY-015015] [Server] MySQL Server - start.
+2024-08-18T23:45:42.099578+09:00 0 [System] [MY-010116] [Server] /usr/sbin/mysqld (mysqld 9.0.1) starting as process 1
+2024-08-18T23:45:42.103850+09:00 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2024-08-18T23:45:42.168767+09:00 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+2024-08-18T23:45:42.173930+09:00 1 [ERROR] [MY-014060] [Server] Invalid MySQL server upgrade: Cannot upgrade from 80033 to 90001. Upgrade to next major version is only allowed from the last LTS release, which version 80033 is not.
+2024-08-18T23:45:42.174370+09:00 0 [ERROR] [MY-010020] [Server] Data Dictionary initialization failed.
+2024-08-18T23:45:42.174475+09:00 0 [ERROR] [MY-010119] [Server] Aborting
+2024-08-18T23:45:42.701679+09:00 0 [System] [MY-010910] [Server] /usr/sbin/mysqld: Shutdown complete (mysqld 9.0.1)  MySQL Community Server - GPL.
+2024-08-18T23:45:42.701841+09:00 0 [System] [MY-015016] [Server] MySQL Server - end.
+2024-08-19T14:57:34.881054+09:00 0 [System] [MY-015015] [Server] MySQL Server - start.
+2024-08-19T14:57:35.086242+09:00 0 [System] [MY-010116] [Server] /usr/sbin/mysqld (mysqld 9.0.1) starting as process 1
+2024-08-19T14:57:35.098506+09:00 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2024-08-19T14:57:35.254244+09:00 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+2024-08-19T14:57:35.265796+09:00 1 [ERROR] [MY-014060] [Server] Invalid MySQL server upgrade: Cannot upgrade from 80033 to 90001. Upgrade to next major version is only allowed from the last LTS release, which version 80033 is not.
+2024-08-19T14:57:35.266165+09:00 0 [ERROR] [MY-010020] [Server] Data Dictionary initialization failed.
+2024-08-19T14:57:35.267212+09:00 0 [ERROR] [MY-010119] [Server] Aborting
+2024-08-19T14:57:35.793082+09:00 0 [System] [MY-010910] [Server] /usr/sbin/mysqld: Shutdown complete (mysqld 9.0.1)  MySQL Community Server - GPL.
+2024-08-19T14:57:35.793213+09:00 0 [System] [MY-015016] [Server] MySQL Server - end.
+2024-08-19T14:59:38.600118+09:00 0 [System] [MY-015015] [Server] MySQL Server - start.
+2024-08-19T14:59:38.767852+09:00 0 [System] [MY-010116] [Server] /usr/sbin/mysqld (mysqld 9.0.1) starting as process 1
+2024-08-19T14:59:38.772670+09:00 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2024-08-19T14:59:38.908392+09:00 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+2024-08-19T14:59:38.912376+09:00 1 [ERROR] [MY-014060] [Server] Invalid MySQL server upgrade: Cannot upgrade from 80033 to 90001. Upgrade to next major version is only allowed from the last LTS release, which version 80033 is not.
+2024-08-19T14:59:38.912672+09:00 0 [ERROR] [MY-010020] [Server] Data Dictionary initialization failed.
+2024-08-19T14:59:38.912883+09:00 0 [ERROR] [MY-010119] [Server] Aborting
+2024-08-19T14:59:39.439706+09:00 0 [System] [MY-010910] [Server] /usr/sbin/mysqld: Shutdown complete (mysqld 9.0.1)  MySQL Community Server - GPL.
+2024-08-19T14:59:39.440012+09:00 0 [System] [MY-015016] [Server] MySQL Server - end.
+2024-08-19T15:05:14.220474+09:00 0 [Warning] [MY-011068] [Server] The syntax '--skip-host-cache' is deprecated and will be removed in a future release. Please use SET GLOBAL host_cache_size=0 instead.
+2024-08-19T15:05:14.221698+09:00 0 [Warning] [MY-010918] [Server] 'default_authentication_plugin' is deprecated and will be removed in a future release. Please use authentication_policy instead.
+2024-08-19T15:05:14.221711+09:00 0 [System] [MY-010116] [Server] /usr/sbin/mysqld (mysqld 8.0.33) starting as process 1
+2024-08-19T15:05:14.228823+09:00 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2024-08-19T15:05:14.369302+09:00 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+2024-08-19T15:05:14.466396+09:00 0 [Warning] [MY-010068] [Server] CA certificate ca.pem is self signed.
+2024-08-19T15:05:14.466467+09:00 0 [System] [MY-013602] [Server] Channel mysql_main configured to support TLS. Encrypted connections are now supported for this channel.
+2024-08-19T15:05:14.467555+09:00 0 [Warning] [MY-011810] [Server] Insecure configuration for --pid-file: Location '/var/run/mysqld' in the path is accessible to all OS users. Consider choosing a different directory.
+2024-08-19T15:05:14.479917+09:00 0 [System] [MY-011323] [Server] X Plugin ready for connections. Bind-address: '::' port: 33060, socket: /var/run/mysqld/mysqlx.sock
+2024-08-19T15:05:14.479967+09:00 0 [System] [MY-010931] [Server] /usr/sbin/mysqld: ready for connections. Version: '8.0.33'  socket: '/var/run/mysqld/mysqld.sock'  port: 3306  MySQL Community Server - GPL.
+2024-08-19T15:05:39.100690+09:00 0 [System] [MY-013172] [Server] Received SHUTDOWN from user <via user signal>. Shutting down mysqld (Version: 8.0.33).
+2024-08-19T15:05:40.010853+09:00 0 [System] [MY-010910] [Server] /usr/sbin/mysqld: Shutdown complete (mysqld 8.0.33)  MySQL Community Server - GPL.
+2024-08-19T15:05:43.090769+09:00 0 [Warning] [MY-011068] [Server] The syntax '--skip-host-cache' is deprecated and will be removed in a future release. Please use SET GLOBAL host_cache_size=0 instead.
+2024-08-19T15:05:43.091025+09:00 0 [Warning] [MY-010918] [Server] 'default_authentication_plugin' is deprecated and will be removed in a future release. Please use authentication_policy instead.
+2024-08-19T15:05:43.091035+09:00 0 [System] [MY-010116] [Server] /usr/sbin/mysqld (mysqld 8.0.33) starting as process 1
+2024-08-19T15:05:43.094519+09:00 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2024-08-19T15:05:43.126796+09:00 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+2024-08-19T15:05:43.231508+09:00 0 [Warning] [MY-010068] [Server] CA certificate ca.pem is self signed.
+2024-08-19T15:05:43.231589+09:00 0 [System] [MY-013602] [Server] Channel mysql_main configured to support TLS. Encrypted connections are now supported for this channel.
+2024-08-19T15:05:43.232382+09:00 0 [Warning] [MY-011810] [Server] Insecure configuration for --pid-file: Location '/var/run/mysqld' in the path is accessible to all OS users. Consider choosing a different directory.
+2024-08-19T15:05:43.240508+09:00 0 [System] [MY-011323] [Server] X Plugin ready for connections. Bind-address: '::' port: 33060, socket: /var/run/mysqld/mysqlx.sock
+2024-08-19T15:05:43.240537+09:00 0 [System] [MY-010931] [Server] /usr/sbin/mysqld: ready for connections. Version: '8.0.33'  socket: '/var/run/mysqld/mysqld.sock'  port: 3306  MySQL Community Server - GPL.
+2024-08-19T15:06:07.964470+09:00 0 [System] [MY-013172] [Server] Received SHUTDOWN from user <via user signal>. Shutting down mysqld (Version: 8.0.33).
+2024-08-19T15:06:08.768398+09:00 0 [System] [MY-010910] [Server] /usr/sbin/mysqld: Shutdown complete (mysqld 8.0.33)  MySQL Community Server - GPL.
+2024-08-19T15:20:42.870106+09:00 0 [Warning] [MY-011068] [Server] The syntax '--skip-host-cache' is deprecated and will be removed in a future release. Please use SET GLOBAL host_cache_size=0 instead.
+2024-08-19T15:20:42.870951+09:00 0 [Warning] [MY-010918] [Server] 'default_authentication_plugin' is deprecated and will be removed in a future release. Please use authentication_policy instead.
+2024-08-19T15:20:42.870971+09:00 0 [System] [MY-010116] [Server] /usr/sbin/mysqld (mysqld 8.0.33) starting as process 1
+2024-08-19T15:20:42.877034+09:00 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2024-08-19T15:20:42.952391+09:00 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+2024-08-19T15:20:43.042346+09:00 0 [Warning] [MY-010068] [Server] CA certificate ca.pem is self signed.
+2024-08-19T15:20:43.043271+09:00 0 [System] [MY-013602] [Server] Channel mysql_main configured to support TLS. Encrypted connections are now supported for this channel.
+2024-08-19T15:20:43.044815+09:00 0 [Warning] [MY-011810] [Server] Insecure configuration for --pid-file: Location '/var/run/mysqld' in the path is accessible to all OS users. Consider choosing a different directory.
+2024-08-19T15:20:43.059233+09:00 0 [System] [MY-011323] [Server] X Plugin ready for connections. Bind-address: '::' port: 33060, socket: /var/run/mysqld/mysqlx.sock
+2024-08-19T15:20:43.059275+09:00 0 [System] [MY-010931] [Server] /usr/sbin/mysqld: ready for connections. Version: '8.0.33'  socket: '/var/run/mysqld/mysqld.sock'  port: 3306  MySQL Community Server - GPL.
+2024-08-19T15:27:04.140169+09:00 0 [System] [MY-013172] [Server] Received SHUTDOWN from user <via user signal>. Shutting down mysqld (Version: 8.0.33).
+2024-08-19T15:27:05.692436+09:00 0 [System] [MY-010910] [Server] /usr/sbin/mysqld: Shutdown complete (mysqld 8.0.33)  MySQL Community Server - GPL.
+2024-08-19T15:27:58.487944+09:00 0 [Warning] [MY-011068] [Server] The syntax '--skip-host-cache' is deprecated and will be removed in a future release. Please use SET GLOBAL host_cache_size=0 instead.
+2024-08-19T15:27:58.487987+09:00 0 [Warning] [MY-010918] [Server] 'default_authentication_plugin' is deprecated and will be removed in a future release. Please use authentication_policy instead.
+2024-08-19T15:27:58.488004+09:00 0 [System] [MY-013169] [Server] /usr/sbin/mysqld (mysqld 8.0.33) initializing of server in progress as process 80
+2024-08-19T15:27:58.501277+09:00 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2024-08-19T15:27:58.788231+09:00 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+2024-08-19T15:27:59.371740+09:00 6 [Warning] [MY-010453] [Server] root@localhost is created with an empty password ! Please consider switching off the --initialize-insecure option.
+2024-08-19T15:28:01.781409+09:00 0 [Warning] [MY-011068] [Server] The syntax '--skip-host-cache' is deprecated and will be removed in a future release. Please use SET GLOBAL host_cache_size=0 instead.
+2024-08-19T15:28:01.782151+09:00 0 [Warning] [MY-010918] [Server] 'default_authentication_plugin' is deprecated and will be removed in a future release. Please use authentication_policy instead.
+2024-08-19T15:28:01.782162+09:00 0 [System] [MY-010116] [Server] /usr/sbin/mysqld (mysqld 8.0.33) starting as process 124
+2024-08-19T15:28:01.789069+09:00 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2024-08-19T15:28:01.861600+09:00 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+2024-08-19T15:28:01.945745+09:00 0 [Warning] [MY-010068] [Server] CA certificate ca.pem is self signed.
+2024-08-19T15:28:01.945851+09:00 0 [System] [MY-013602] [Server] Channel mysql_main configured to support TLS. Encrypted connections are now supported for this channel.
+2024-08-19T15:28:01.946679+09:00 0 [Warning] [MY-011810] [Server] Insecure configuration for --pid-file: Location '/var/run/mysqld' in the path is accessible to all OS users. Consider choosing a different directory.
+2024-08-19T15:28:01.952599+09:00 0 [System] [MY-011323] [Server] X Plugin ready for connections. Socket: /var/run/mysqld/mysqlx.sock
+2024-08-19T15:28:01.952699+09:00 0 [System] [MY-010931] [Server] /usr/sbin/mysqld: ready for connections. Version: '8.0.33'  socket: '/var/run/mysqld/mysqld.sock'  port: 0  MySQL Community Server - GPL.
+2024-08-19T15:28:03.133946+09:00 13 [System] [MY-013172] [Server] Received SHUTDOWN from user root. Shutting down mysqld (Version: 8.0.33).
+2024-08-19T15:28:04.521218+09:00 0 [System] [MY-010910] [Server] /usr/sbin/mysqld: Shutdown complete (mysqld 8.0.33)  MySQL Community Server - GPL.
+2024-08-19T15:28:05.303259+09:00 0 [Warning] [MY-011068] [Server] The syntax '--skip-host-cache' is deprecated and will be removed in a future release. Please use SET GLOBAL host_cache_size=0 instead.
+2024-08-19T15:28:05.303811+09:00 0 [Warning] [MY-010918] [Server] 'default_authentication_plugin' is deprecated and will be removed in a future release. Please use authentication_policy instead.
+2024-08-19T15:28:05.303821+09:00 0 [System] [MY-010116] [Server] /usr/sbin/mysqld (mysqld 8.0.33) starting as process 1
+2024-08-19T15:28:05.307003+09:00 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2024-08-19T15:28:05.349841+09:00 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+2024-08-19T15:28:05.410644+09:00 0 [Warning] [MY-010068] [Server] CA certificate ca.pem is self signed.
+2024-08-19T15:28:05.410718+09:00 0 [System] [MY-013602] [Server] Channel mysql_main configured to support TLS. Encrypted connections are now supported for this channel.
+2024-08-19T15:28:05.411479+09:00 0 [Warning] [MY-011810] [Server] Insecure configuration for --pid-file: Location '/var/run/mysqld' in the path is accessible to all OS users. Consider choosing a different directory.
+2024-08-19T15:28:05.418171+09:00 0 [System] [MY-011323] [Server] X Plugin ready for connections. Bind-address: '::' port: 33060, socket: /var/run/mysqld/mysqlx.sock
+2024-08-19T15:28:05.418214+09:00 0 [System] [MY-010931] [Server] /usr/sbin/mysqld: ready for connections. Version: '8.0.33'  socket: '/var/run/mysqld/mysqld.sock'  port: 3306  MySQL Community Server - GPL.
+2024-08-19T19:23:38.851847+09:00 0 [System] [MY-013172] [Server] Received SHUTDOWN from user <via user signal>. Shutting down mysqld (Version: 8.0.33).
+2024-08-19T19:23:40.456007+09:00 0 [System] [MY-010910] [Server] /usr/sbin/mysqld: Shutdown complete (mysqld 8.0.33)  MySQL Community Server - GPL.
+2024-08-19T19:23:45.559134+09:00 0 [Warning] [MY-011068] [Server] The syntax '--skip-host-cache' is deprecated and will be removed in a future release. Please use SET GLOBAL host_cache_size=0 instead.
+2024-08-19T19:23:45.560065+09:00 0 [Warning] [MY-010918] [Server] 'default_authentication_plugin' is deprecated and will be removed in a future release. Please use authentication_policy instead.
+2024-08-19T19:23:45.560085+09:00 0 [System] [MY-010116] [Server] /usr/sbin/mysqld (mysqld 8.0.33) starting as process 1
+2024-08-19T19:23:45.568807+09:00 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2024-08-19T19:23:45.644083+09:00 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+2024-08-19T19:23:45.722885+09:00 0 [Warning] [MY-010068] [Server] CA certificate ca.pem is self signed.
+2024-08-19T19:23:45.723053+09:00 0 [System] [MY-013602] [Server] Channel mysql_main configured to support TLS. Encrypted connections are now supported for this channel.
+2024-08-19T19:23:45.723922+09:00 0 [Warning] [MY-011810] [Server] Insecure configuration for --pid-file: Location '/var/run/mysqld' in the path is accessible to all OS users. Consider choosing a different directory.
+2024-08-19T19:23:45.737970+09:00 0 [System] [MY-011323] [Server] X Plugin ready for connections. Bind-address: '::' port: 33060, socket: /var/run/mysqld/mysqlx.sock
+2024-08-19T19:23:45.737983+09:00 0 [System] [MY-010931] [Server] /usr/sbin/mysqld: ready for connections. Version: '8.0.33'  socket: '/var/run/mysqld/mysqld.sock'  port: 3306  MySQL Community Server - GPL.
+2024-08-19T19:26:47.677060+09:00 0 [System] [MY-013172] [Server] Received SHUTDOWN from user <via user signal>. Shutting down mysqld (Version: 8.0.33).
+2024-08-19T19:26:48.589323+09:00 0 [System] [MY-010910] [Server] /usr/sbin/mysqld: Shutdown complete (mysqld 8.0.33)  MySQL Community Server - GPL.
+2024-08-19T19:27:59.186954+09:00 0 [Warning] [MY-011068] [Server] The syntax '--skip-host-cache' is deprecated and will be removed in a future release. Please use SET GLOBAL host_cache_size=0 instead.
+2024-08-19T19:27:59.188252+09:00 0 [Warning] [MY-010918] [Server] 'default_authentication_plugin' is deprecated and will be removed in a future release. Please use authentication_policy instead.
+2024-08-19T19:27:59.188273+09:00 0 [System] [MY-010116] [Server] /usr/sbin/mysqld (mysqld 8.0.33) starting as process 1
+2024-08-19T19:27:59.192966+09:00 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2024-08-19T19:27:59.264528+09:00 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+2024-08-19T19:27:59.392500+09:00 0 [Warning] [MY-010068] [Server] CA certificate ca.pem is self signed.
+2024-08-19T19:27:59.392617+09:00 0 [System] [MY-013602] [Server] Channel mysql_main configured to support TLS. Encrypted connections are now supported for this channel.
+2024-08-19T19:27:59.393732+09:00 0 [Warning] [MY-011810] [Server] Insecure configuration for --pid-file: Location '/var/run/mysqld' in the path is accessible to all OS users. Consider choosing a different directory.
+2024-08-19T19:27:59.406606+09:00 0 [System] [MY-011323] [Server] X Plugin ready for connections. Bind-address: '::' port: 33060, socket: /var/run/mysqld/mysqlx.sock
+2024-08-19T19:27:59.406635+09:00 0 [System] [MY-010931] [Server] /usr/sbin/mysqld: ready for connections. Version: '8.0.33'  socket: '/var/run/mysqld/mysqld.sock'  port: 3306  MySQL Community Server - GPL.
+2024-08-19T19:33:55.731114+09:00 0 [System] [MY-013172] [Server] Received SHUTDOWN from user <via user signal>. Shutting down mysqld (Version: 8.0.33).
+2024-08-19T19:33:56.954729+09:00 0 [System] [MY-010910] [Server] /usr/sbin/mysqld: Shutdown complete (mysqld 8.0.33)  MySQL Community Server - GPL.
+2024-08-19T19:34:43.566919+09:00 0 [Warning] [MY-011068] [Server] The syntax '--skip-host-cache' is deprecated and will be removed in a future release. Please use SET GLOBAL host_cache_size=0 instead.
+2024-08-19T19:34:43.567881+09:00 0 [Warning] [MY-010918] [Server] 'default_authentication_plugin' is deprecated and will be removed in a future release. Please use authentication_policy instead.
+2024-08-19T19:34:43.567902+09:00 0 [System] [MY-010116] [Server] /usr/sbin/mysqld (mysqld 8.0.33) starting as process 1
+2024-08-19T19:34:43.572684+09:00 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2024-08-19T19:34:43.642723+09:00 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+2024-08-19T19:34:43.720550+09:00 0 [Warning] [MY-010068] [Server] CA certificate ca.pem is self signed.
+2024-08-19T19:34:43.720769+09:00 0 [System] [MY-013602] [Server] Channel mysql_main configured to support TLS. Encrypted connections are now supported for this channel.
+2024-08-19T19:34:43.721552+09:00 0 [Warning] [MY-011810] [Server] Insecure configuration for --pid-file: Location '/var/run/mysqld' in the path is accessible to all OS users. Consider choosing a different directory.
+2024-08-19T19:34:43.729345+09:00 0 [System] [MY-011323] [Server] X Plugin ready for connections. Bind-address: '::' port: 33060, socket: /var/run/mysqld/mysqlx.sock
+2024-08-19T19:34:43.729372+09:00 0 [System] [MY-010931] [Server] /usr/sbin/mysqld: ready for connections. Version: '8.0.33'  socket: '/var/run/mysqld/mysqld.sock'  port: 3306  MySQL Community Server - GPL.
+2024-08-19T19:56:46.704516+09:00 0 [System] [MY-013172] [Server] Received SHUTDOWN from user <via user signal>. Shutting down mysqld (Version: 8.0.33).
+2024-08-19T19:56:47.843195+09:00 0 [System] [MY-010910] [Server] /usr/sbin/mysqld: Shutdown complete (mysqld 8.0.33)  MySQL Community Server - GPL.
+2024-08-19T19:58:12.884044+09:00 0 [Warning] [MY-011068] [Server] The syntax '--skip-host-cache' is deprecated and will be removed in a future release. Please use SET GLOBAL host_cache_size=0 instead.
+2024-08-19T19:58:12.885414+09:00 0 [Warning] [MY-010918] [Server] 'default_authentication_plugin' is deprecated and will be removed in a future release. Please use authentication_policy instead.
+2024-08-19T19:58:12.885437+09:00 0 [System] [MY-010116] [Server] /usr/sbin/mysqld (mysqld 8.0.33) starting as process 1
+2024-08-19T19:58:12.891237+09:00 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2024-08-19T19:58:12.976521+09:00 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+2024-08-19T19:58:13.069862+09:00 0 [Warning] [MY-010068] [Server] CA certificate ca.pem is self signed.
+2024-08-19T19:58:13.069959+09:00 0 [System] [MY-013602] [Server] Channel mysql_main configured to support TLS. Encrypted connections are now supported for this channel.
+2024-08-19T19:58:13.070862+09:00 0 [Warning] [MY-011810] [Server] Insecure configuration for --pid-file: Location '/var/run/mysqld' in the path is accessible to all OS users. Consider choosing a different directory.
+2024-08-19T19:58:13.080291+09:00 0 [System] [MY-011323] [Server] X Plugin ready for connections. Bind-address: '::' port: 33060, socket: /var/run/mysqld/mysqlx.sock
+2024-08-19T19:58:13.080315+09:00 0 [System] [MY-010931] [Server] /usr/sbin/mysqld: ready for connections. Version: '8.0.33'  socket: '/var/run/mysqld/mysqld.sock'  port: 3306  MySQL Community Server - GPL.
+2024-08-19T23:47:59.995904+09:00 0 [System] [MY-013172] [Server] Received SHUTDOWN from user <via user signal>. Shutting down mysqld (Version: 8.0.33).
+2024-08-19T23:48:00.968316+09:00 0 [System] [MY-010910] [Server] /usr/sbin/mysqld: Shutdown complete (mysqld 8.0.33)  MySQL Community Server - GPL.
+2024-08-19T23:48:14.484077+09:00 0 [Warning] [MY-011068] [Server] The syntax '--skip-host-cache' is deprecated and will be removed in a future release. Please use SET GLOBAL host_cache_size=0 instead.
+2024-08-19T23:48:14.484615+09:00 0 [Warning] [MY-010918] [Server] 'default_authentication_plugin' is deprecated and will be removed in a future release. Please use authentication_policy instead.
+2024-08-19T23:48:14.484635+09:00 0 [System] [MY-010116] [Server] /usr/sbin/mysqld (mysqld 8.0.33) starting as process 1
+2024-08-19T23:48:14.490861+09:00 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2024-08-19T23:48:14.568015+09:00 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+2024-08-19T23:48:14.651763+09:00 0 [Warning] [MY-010068] [Server] CA certificate ca.pem is self signed.
+2024-08-19T23:48:14.652163+09:00 0 [System] [MY-013602] [Server] Channel mysql_main configured to support TLS. Encrypted connections are now supported for this channel.
+2024-08-19T23:48:14.653967+09:00 0 [Warning] [MY-011810] [Server] Insecure configuration for --pid-file: Location '/var/run/mysqld' in the path is accessible to all OS users. Consider choosing a different directory.
+2024-08-19T23:48:14.669108+09:00 0 [System] [MY-011323] [Server] X Plugin ready for connections. Bind-address: '::' port: 33060, socket: /var/run/mysqld/mysqlx.sock
+2024-08-19T23:48:14.669110+09:00 0 [System] [MY-010931] [Server] /usr/sbin/mysqld: ready for connections. Version: '8.0.33'  socket: '/var/run/mysqld/mysqld.sock'  port: 3306  MySQL Community Server - GPL.
