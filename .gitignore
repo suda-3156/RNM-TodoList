@@ -1,3 +1,8 @@
 ./*/node_modules
 .env
-./db/logs/*
+
+./db/logs
+
+mysql-error.log
+mysql-query.log
+mysql-slow.log
