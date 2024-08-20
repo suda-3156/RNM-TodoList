@@ -1,5 +1,4 @@
-import { atomFamily } from "jotai/utils"
-import { atom, PrimitiveAtom, useAtom, useAtomValue, useSetAtom } from "jotai"
+import { useAtom, useAtomValue, useSetAtom } from "jotai"
 import { CloseOutlined, PlusOutlined} from "@ant-design/icons"
 import { useForm, FormProvider} from "react-hook-form"
 import { useEffect, useRef } from "react"
@@ -7,6 +6,7 @@ import { nanoid } from "nanoid"
 import { Radio, RadioChangeEvent } from "antd"
 import './index.css'
 import { getAPI, putAPI, postAPI, deleteAPI } from "./controllers"
+import { todoAtom, todoAtomFamily, filterAtom, filteredAtom, historyAtom, deletedAtom } from "./store"
 
 /**
  * todoFamily : todoをしまう
@@ -22,55 +22,28 @@ import { getAPI, putAPI, postAPI, deleteAPI } from "./controllers"
  * submithandlerってなに
  */
 
-const todoAtomFamily = atomFamily<newTodo, PrimitiveAtom<Todo>>(
-  (param) => 
-    atom<Todo>({id: param.id, title: param.title || "No title", completed : param.completed || false, deleted: param.deleted || false }),
-  (a, b) => a.id === b.id
-)
-const todoAtom = atom<TodoId[]>([])
-const filterAtom = atom<todoFilter>('all')
-const filteredAtom = atom<TodoId[]>((get) => {
-  const filter = get(filterAtom)
-  const todos = get(todoAtom)
-  switch(filter) {
-    case "all":
-      return todos
-    case "completed":
-      return todos.filter((todo) => get(todoAtomFamily({id: todo.id})).completed)
-    case "incompleted":
-      return todos.filter((todo) => !get(todoAtomFamily({id: todo.id})).completed)
-    default:
-      return todos
-  }
-})
+
 // const firstLoad = atom<boolean>(false)
 
 const TodoItem = (prop: TodoId) => {
-  const isFirstRender = useRef(true);
+  const isFirstRender = useRef(true)
+  const setDeletedTodoIds = useSetAtom(deletedAtom)
 
   const [item, setItem] = useAtom(todoAtomFamily({id: prop.id}))
   const methods = useForm<TodoTitle>()
   const toogelCompleted = () => {
     setItem((prev) => ({...prev, completed: !prev.completed}))
-    // putAPI({url: `/${item.id}`, todo: item})
-    //   .then((response) => console.log("isCompleted updated : " + response))
-    //   .catch((error) => console.log(error))
   }
   const handleDelete = () => {
     console.log("deleted")
     setItem((prev) => ({...prev, deleted: true}))
-    // putAPI({url: `/${item.id}`, todo: item})
-    //   .then((response) => console.log("isDeleted updated : " + response))
-    //   .catch((error) => console.log(error))
+    setDeletedTodoIds((prev) => [...prev, {id: prop.id}])
   }
   const onSubmit = (data: TodoTitle) => {
     const newTitle = data.title.trim() || "No title"
     console.log("newTitle: " + newTitle)
     setItem((prev) =>  ({...prev, title:newTitle}))     
     console.log("title: " + item.title)
-    // putAPI({url: `/${item.id}`, todo: item})
-    //   .then((response) => console.log("title updated : " + response))
-    //   .catch((error) => console.log(error))
   }
 
   useEffect(() => {
@@ -89,7 +62,7 @@ const TodoItem = (prop: TodoId) => {
   if( item.deleted ) return 
 
   return (
-    <div className="bblock flex justify-center items-center gap-x-2 px-2">
+    <div className="bblock flex justify-center items-center gap-x-2 px-2 mb-4">
         <input
           id="isCompleted" 
           type="checkbox"
@@ -161,7 +134,7 @@ const CreateTodoForm = () => {
   // エラーメッセージを入れる
   return (
     <FormProvider {...methods}>
-      <form onSubmit={methods.handleSubmit(onSubmit)} className="w-full">
+      <form onSubmit={methods.handleSubmit(onSubmit)} className="w-full px-4">
         <fieldset className="bblock focusblock flex justify-center items-center gap-x-2 p-2 mb-5">
           <input
             type="text"
@@ -184,6 +157,11 @@ export const TodoList = () => {
   const filteredTodoIds = useAtomValue(filteredAtom)
   const [todoIds, setTodoIds] = useAtom(todoAtom)
   const isFirstLoad = useRef(true); // 初回ロードを追跡
+  const [ toggle, setToggle ] = useAtom(historyAtom)
+
+  const handleToggle = () => {
+    setToggle(prev => !prev)
+  }
   
   useEffect(() => {
     if ( isFirstLoad.current ) {      
@@ -211,13 +189,18 @@ export const TodoList = () => {
   },[setTodoIds])
 
   return (
-    <div className="w-[500px] flex flex-col justify-center items-center gap-y-4">
-      <h1 className="pageTitle">TodoList</h1>
+    <div className="max-w-[600px] min-w-[400px] w-full h-full flex flex-col justify-center items-center gap-y-4">
+      <h1 className="text-[min(max(13vw,90px),160px)] font-extrabold tracking-tighter text-black whitespace-nowrap">TodoList</h1>
       <CreateTodoForm />
       <Filter />
-      {filteredTodoIds.map((todo) => 
-        <TodoItem id={todo.id} key={todo.id}/>
-      )}
+      <div className="w-full h-full p-4 overflow-y-scroll">
+        {filteredTodoIds.map((todo) => 
+          <TodoItem id={todo.id} key={todo.id}/>
+        )}
+      </div>
+        <div className="w-full h-20 p-5 flex justify-end">
+          <button onClick={handleToggle} className="w-[100px] h-full text-2xl font-semibold hover:text-[#3B83F6] opacity-95"> History </button>
+        </div>
     </div>
   )
 }

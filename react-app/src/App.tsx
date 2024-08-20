@@ -1,5 +1,7 @@
 import { TodoList } from "./Todolist"
 import { Provider } from "jotai"
+import { History } from "./History"
+import { Mask } from "./mask"
 
 // // getAPI すべてのTodoを読み込む
 // export const getAllTodos = async () => {
@@ -33,8 +35,10 @@ export default function App() {
 
   
   return (
-    <div className="w-full p-10 bg-white flex flex-col justify-center items-center">
+    <div className="absolute top-0 left-0 w-full h-screen bg-white flex flex-col items-center overflow-hidden">
       <Provider>
+        <History />
+        <Mask />
         <TodoList />
       </Provider>
     </div>

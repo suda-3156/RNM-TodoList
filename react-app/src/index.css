@@ -20,12 +20,5 @@
     outline: none;
   }
 
-  .pageTitle {
-    font-size: 10rem;
-    font-weight: 800;
-    letter-spacing: -5px;
-    color: black;
-    white-space: nowrap;
-  }
 }
   
