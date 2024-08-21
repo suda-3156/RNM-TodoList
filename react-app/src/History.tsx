@@ -18,10 +18,11 @@ export const History = () => {
 
   const handleClearTodos = async () => {
     console.log("clear all todos")
-    deletedTodoIds.map(async (todo) => {
+    console.log(deletedTodoIds)
+    deletedTodoIds.map((todo) => {
       console.log("delete todo id: " + todo.id)
       // dbとatomFamilyとtodoIdsとdeletedIdsから消さなきゃいけない。だる！！
-      await deleteAPI({url: "", id: todo.id})
+      // await deleteAPI({url: "", id: todo.id})
     })
   }
   
@@ -36,11 +37,11 @@ export const History = () => {
   }
 
   return (
-    <animated.div style={styles} className='absolute top-0 right-0 z-20 min-w-[400px] h-screen bg-white border-l border-[#333333] flex flex-col justify-center gap-y-4'>
+    <animated.div style={styles} className='absolute top-0 right-0 z-20 w-[400px] h-screen bg-white border-l border-[#333333] flex flex-col justify-center gap-y-4'>
       <button className='px-5 h-32 text-8xl font-bold text-black whitespace-nowrap tracking-tighter' onClick={handleToggle}>
         History
       </button>
-      <div className="w-full overflow-y-scroll px-5">
+      <div className="w-full h-full overflow-y-scroll px-5">
         {todoIds.map((todo) => 
           <DeletedTodoItem id={todo.id} key={todo.id} />
         )}
@@ -51,7 +52,7 @@ export const History = () => {
           <DeleteOutlined className='w-12 h-12' style={{fontSize : '40px', color: 'white'}}/>
         </button>
       </div>
-  </animated.div>
+    </animated.div>
   )  
 }
 

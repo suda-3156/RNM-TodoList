@@ -5,7 +5,7 @@ import { useEffect, useRef } from "react"
 import { nanoid } from "nanoid"
 import { Radio, RadioChangeEvent } from "antd"
 import './index.css'
-import { getAPI, putAPI, postAPI, deleteAPI } from "./controllers"
+import { getAPI, putAPI, postAPI } from "./controllers"
 import { todoAtom, todoAtomFamily, filterAtom, filteredAtom, historyAtom, deletedAtom } from "./store"
 
 /**
@@ -27,7 +27,7 @@ import { todoAtom, todoAtomFamily, filterAtom, filteredAtom, historyAtom, delete
 
 const TodoItem = (prop: TodoId) => {
   const isFirstRender = useRef(true)
-  const setDeletedTodoIds = useSetAtom(deletedAtom)
+  const [deletedTodoIds, setDeletedTodoIds] = useAtom(deletedAtom)
 
   const [item, setItem] = useAtom(todoAtomFamily({id: prop.id}))
   const methods = useForm<TodoTitle>()
@@ -38,6 +38,7 @@ const TodoItem = (prop: TodoId) => {
     console.log("deleted")
     setItem((prev) => ({...prev, deleted: true}))
     setDeletedTodoIds((prev) => [...prev, {id: prop.id}])
+    console.log(deletedTodoIds)
   }
   const onSubmit = (data: TodoTitle) => {
     const newTitle = data.title.trim() || "No title"
@@ -157,14 +158,14 @@ export const TodoList = () => {
   const filteredTodoIds = useAtomValue(filteredAtom)
   const [todoIds, setTodoIds] = useAtom(todoAtom)
   const isFirstLoad = useRef(true); // 初回ロードを追跡
-  const [ toggle, setToggle ] = useAtom(historyAtom)
+  const setToggle = useSetAtom(historyAtom)
 
   const handleToggle = () => {
     setToggle(prev => !prev)
   }
   
   useEffect(() => {
-    if ( isFirstLoad.current ) {      
+    if ( isFirstLoad.current ) {    
       getAPI({url: '', id: ''})
         .then((res) => {
           switch(res.errorType) {
@@ -184,6 +185,10 @@ export const TodoList = () => {
           }
         })
         .catch(error => console.log(error))
+        .finally(() => {
+          console.log("todoIds is updated")
+          console.log(todoIds)
+        })
         isFirstLoad.current = false; // 初回ロードを終了
     }
   },[setTodoIds])

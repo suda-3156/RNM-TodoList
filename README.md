@@ -36,15 +36,17 @@ Jotaiのshow caseにあるTodo ListでatomFamilyを使うバージョン
 
 jotai, useForm, 他便利そうなライブラリ
 
-やること：
+やりたいこと：
+
+・初回レンダリング時に、todoIdsとtodoAtomをとってきて、deletedtodoをつくるorこれもとってくるようにすべき？
+
+・あと、awaitとasync, promiseを適切に使えていないのでなおす。
+
+
 
 ・順番が変わらないように、日時の降順とかにする
 
-・deleteだけ表示できるようにする
-
 ・loading画面
-
-
 
 ・ログイン画面
 
