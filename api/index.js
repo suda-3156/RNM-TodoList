@@ -97,7 +97,7 @@ app.delete("/api/v1/todoitems/:id", (req, res) => {
   console.log("delete api is called")
   console.log(req.body)
 
-  const query = "DELETE FROM todo WHERE id = ?"
+  const query = "DELETE FROM todos WHERE id = ?"
   db.query(query, [id], (err, result) => {
     if (err) {
       console.log(err)

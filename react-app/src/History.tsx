@@ -3,27 +3,38 @@
  */
 
 import { RedoOutlined, DeleteOutlined } from '@ant-design/icons'
-import { useAtom, useAtomValue } from 'jotai'
-import { deletedAtom, historyAtom, todoAtom, todoAtomFamily } from './store'
-import { FC, useEffect, useRef, useState } from 'react'
+import { useAtom, useAtomValue, useSetAtom } from 'jotai'
+import { deletedTodoAtom, historyAtom, todoAtom, todoAtomFamily } from './store'
+import { FC } from 'react'
 import { deleteAPI, putAPI } from './controllers'
 import './index.css'
 import { animated, useSpring } from '@react-spring/web'
 
 
 export const History = () => {
-  const todoIds = useAtomValue(todoAtom)
+  const [deletedTodoIds, setDeletedTodoIds] = useAtom(deletedTodoAtom)
   const [ toggle, setToggle ] = useAtom(historyAtom)
-  const [ deletedTodoIds, setDeletedTodoIds] = useAtom(deletedAtom) 
 
   const handleClearTodos = async () => {
     console.log("clear all todos")
-    console.log(deletedTodoIds)
-    deletedTodoIds.map((todo) => {
-      console.log("delete todo id: " + todo.id)
-      // dbとatomFamilyとtodoIdsとdeletedIdsから消さなきゃいけない。だる！！
-      // await deleteAPI({url: "", id: todo.id})
-    })
+    for(const prop of deletedTodoIds) {
+      await deleteAPI({id: prop.id})
+        .then((response) => {
+          switch(response.errorType) {
+            case "SUCCESS":
+              console.log("Item deleted. id: ",  prop.id)
+              setDeletedTodoIds((prev) => prev.filter((todo) => todo.id !== prop.id))    
+              todoAtomFamily.remove({id: prop.id})
+              break
+            default:
+              console.error(response.errorType)
+              break
+          }
+        })
+        .catch((error) => {
+          console.error(error)
+        })
+    }
   }
   
   const styles = useSpring({
@@ -42,7 +53,7 @@ export const History = () => {
         History
       </button>
       <div className="w-full h-full overflow-y-scroll px-5">
-        {todoIds.map((todo) => 
+        {deletedTodoIds.map((todo) => 
           <DeletedTodoItem id={todo.id} key={todo.id} />
         )}
       </div>
@@ -58,37 +69,58 @@ export const History = () => {
 
 const DeletedTodoItem :FC<TodoId> = (prop) => {
   const [item, setItem] = useAtom(todoAtomFamily({id: prop.id}))
-  const isFirstRender = useRef(true);
+  const setTodoIds = useSetAtom(todoAtom)
+  const setDeletedTodoIds = useSetAtom(deletedTodoAtom)
 
-
-  useEffect(() => {
-
-    if (isFirstRender.current) {
-      isFirstRender.current = false;
-      return;
-    }
-
-    putAPI({url: `/${item.id}`, todo: item})
-      .then((response) => console.log("Item Updated : " + response))
-      .catch((error) => console.log(error))
-      
-  },[item])
-
-  const handleUnDelete = () => {
-    setItem((prev) => ({...prev, deleted: false}))
+  const handleUnDelete = async () => {
+    console.log("handleUnDelete is called")
+    await putAPI({id: item.id, todo: {id: item.id, title: item.title, completed: item.completed, deleted: 0}})
+      .then((response) => {
+        switch(response.errorType) {
+          case "SUCCESS":
+            console.log("Item update : success")
+            setItem((prev) => ({...prev, deleted: 0}))
+            setDeletedTodoIds((prev) => prev.filter((todo) => todo.id !== item.id))
+            setTodoIds((prev) => [...prev, {id: item.id}])
+            break
+          default:
+            console.error(response.errorType)
+            break
+        }
+      })
+      .catch((error) => {
+        console.error(error)
+      })
   }
 
-  if( !item.deleted ) return 
+  const handleClear = async () => {
+    await deleteAPI({id: item.id})
+      .then((response) => {
+        switch(response.errorType) {
+          case "SUCCESS":
+            console.log("Item deleted. id: ",  item.id)
+            setDeletedTodoIds((prev) => prev.filter((todo) => todo.id !== item.id))    
+            todoAtomFamily.remove({id: item.id})
+            break
+          default:
+            console.error(response.errorType)
+            break
+        }
+      })
+      .catch((error) => {
+        console.error(error)
+      })
+  }
 
   return (
     <div className="bblock flex justify-center items-center gap-x-2 px-2 mb-4">
       <input
         id="isCompleted" 
         type="checkbox"
-        checked={item.completed}
+        checked={item.completed === 1}
         disabled={true}
       />
-      <div className="w-11/12 overflow-hidden">
+      <div className="w-10/12 overflow-hidden">
         <p
           style={{ textDecoration: item.completed ? 'line-through' : '' }}
           className="w-full text-nowrap"
@@ -97,6 +129,7 @@ const DeletedTodoItem :FC<TodoId> = (prop) => {
         </p>
       </div>
       <RedoOutlined className="ml-auto" onClick={handleUnDelete}/>
+      <DeleteOutlined onClick={handleClear}/>
     </div>
   )
 }

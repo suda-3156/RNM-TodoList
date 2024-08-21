@@ -3,10 +3,11 @@ import { PrimitiveAtom, atom } from "jotai"
 
 export const todoAtomFamily = atomFamily<newTodo, PrimitiveAtom<Todo>>(
   (param) => 
-    atom<Todo>({id: param.id, title: param.title || "No title", completed : param.completed || false, deleted: param.deleted || false }),
+    atom<Todo>({id: param.id, title: param.title || "No title", completed : param.completed || 0, deleted: param.deleted || 0}),
   (a, b) => a.id === b.id
 )
 export const todoAtom = atom<TodoId[]>([])
+export const deletedTodoAtom = atom<TodoId[]>([])
 export const filterAtom = atom<todoFilter>('all')
 export const filteredAtom = atom<TodoId[]>((get) => {
   const filter = get(filterAtom)
@@ -18,10 +19,7 @@ export const filteredAtom = atom<TodoId[]>((get) => {
       return todos.filter((todo) => get(todoAtomFamily({id: todo.id})).completed)
     case "incompleted":
       return todos.filter((todo) => !get(todoAtomFamily({id: todo.id})).completed)
-    default:
-      return todos
   }
 })
-export const deletedAtom = atom<TodoId[]>([])
 
 export const historyAtom = atom(false)

@@ -1,16 +1,15 @@
 import axios from "axios";
 import { isTodos } from "./lib/isTodo";
 
-const port = import.meta.env.VITE_IP
+const ip = import.meta.env.VITE_IP
 
 
 
 /**
  * API controllers 
  */
-
 const axiosInstance = axios.create({
-  baseURL: `http://${port}:3001/api/v1/todoitems`,
+  baseURL: `http://${ip}:3001/api/v1/todoitems`,
   headers: {
     'Content-Type': 'application/json',
   },
@@ -20,28 +19,27 @@ const axiosInstance = axios.create({
  * GET API
  */
 export type getAPIRequest = {
-  url: '',
-  id: string,
+  // url: '',
+  id: string | "", 
 }
 export type getAIPResponse = {
-  errorType: 'success' | 'systemError' | 'axiosError' | 'jsonError',
+  errorType: 'SUCCESS' | 'SYSTEM_ERROR' | 'AXIOS_ERROR' | 'JOSN_ERROR',
   result : Todo[] | null
 }
 
-export const getAPI = async (Request :getAPIRequest) :Promise< getAIPResponse > => {
+export const getAPI = async (Request :getAPIRequest) :Promise<getAIPResponse > => {
+  console.log('getAPI is called. id: ' + Request.id)
   try {
-    const result = await axiosInstance.get(`${Request.url}/${Request.id}`)
-    console.log(result.data);
-    if(isTodos(result.data)) {
-      console.log("type of result.data is Todo[]")
+    const res = await axiosInstance.get(`/${Request.id}`)
+    // console.log("getAPI response: " + res);
+    if(isTodos(res.data)) {
       return {
-        errorType: 'success',
-        result: result.data
+        errorType: 'SUCCESS',
+        result: res.data
       }
     } else {
-      console.log(result.data)
       return { 
-        errorType: 'jsonError',
+        errorType: 'JOSN_ERROR',
         result: null
       }
     }
@@ -49,12 +47,12 @@ export const getAPI = async (Request :getAPIRequest) :Promise< getAIPResponse > 
     console.error(error)
     if (axios.isAxiosError(error)) {
       return {
-        errorType: 'axiosError',
+        errorType: 'AXIOS_ERROR',
         result: null
       }
     } else {
       return {
-        errorType: 'systemError',
+        errorType: 'SYSTEM_ERROR',
         result: null
       }
     }
@@ -65,31 +63,30 @@ export const getAPI = async (Request :getAPIRequest) :Promise< getAIPResponse > 
  * PUT API
  */
 export type putAPIRequest = {
-  url: string,
+  id: string,
   todo: Todo
 }
 export type putAPIResponse = {
-  errorType: 'success' | 'systemError' | 'axiosError' | 'invalidType'
+  errorType: 'SUCCESS' | 'SYSTEM_ERROR' | 'AXIOS_ERROR' | 'INVALID_TYPE'
 }
 
 export const putAPI = async (Request :putAPIRequest) :Promise<putAPIResponse> => {
-  if (Request.todo.title === '' || Request.todo.id === '') return {errorType: 'invalidType'}
-  console.log("run putAPI with url : " + Request.url)
+  console.log("putAPI is called. id: " + Request.id)
+  if (Request.todo.title === '' || Request.todo.id === '') return {errorType: 'INVALID_TYPE'}
   try {
-    const res = await axiosInstance.put(`${Request.url}`, Request.todo)
-    console.log(res)
+    await axiosInstance.put(`/${Request.id}`, Request.todo)
     return {
-      errorType: 'success'
+      errorType: 'SUCCESS'
     }
   } catch (error) {
     console.error(error)
     if (axios.isAxiosError(error)) {
       return {
-        errorType: 'axiosError'
+        errorType: 'AXIOS_ERROR'
       }
     } else {
       return {
-        errorType: 'systemError'
+        errorType: 'SYSTEM_ERROR'
       }
     }
   }
@@ -99,31 +96,30 @@ export const putAPI = async (Request :putAPIRequest) :Promise<putAPIResponse> =>
  * POST API
  */
 export type postAPIRequest = {
-  url: string,
   todo: Todo
 }
 export type postAPIResponse = {
-  errorType: 'success' | 'systemError' | 'axiosError' | 'invalidType'
+  errorType: 'SUCCESS' | 'SYSTEM_ERROR' | 'AXIOS_ERROR' | 'INVALID_TYPE'
 }
 
 export const postAPI = async (Request :postAPIRequest) :Promise<postAPIResponse> => {
-  if (Request.todo.id === '') return {errorType: 'invalidType'}
-  console.log("run postAPI with url : " + Request.url)
+  console.log("run postAPI")
+  if (Request.todo.id === '' || Request.todo.title === '') return {errorType: 'INVALID_TYPE'}
   try {
-    const res = await axiosInstance.post(`${Request.url}`, Request.todo)
+    const res = await axiosInstance.post(``, Request.todo)
     console.log(res)
     return {
-      errorType: 'success'
+      errorType: 'SUCCESS'
     }
   } catch (error) {
     console.error(error)
     if (axios.isAxiosError(error)) {
       return {
-        errorType: 'axiosError'
+        errorType: 'AXIOS_ERROR'
       }
     } else {
       return {
-        errorType: 'systemError'
+        errorType: 'SYSTEM_ERROR'
       }
     }
   }
@@ -133,29 +129,30 @@ export const postAPI = async (Request :postAPIRequest) :Promise<postAPIResponse>
  * DELETE API
  */
 export type deleteAPIRequest = {
-  url: '',
+  url?: string,
   id: string
 }
 export type deleteAPIResponse = {
-  errorType: 'success' | 'systemError' | 'axiosError' 
+  errorType: 'SUCCESS' | 'SYSTEM_ERROR' | 'AXIOS_ERROR'
 }
 
 export const deleteAPI = async (Request :deleteAPIRequest) :Promise<deleteAPIResponse> => {
+  console.log("deleteAPI is called. id: " + Request.id)
   try {
     const res = await axiosInstance.delete(`/${Request.id}`)
     console.log(res)
     return {
-      errorType: 'success'
+      errorType: 'SUCCESS'
     }
   } catch (error) {
     console.error(error)
     if (axios.isAxiosError(error)) {
       return {
-        errorType: 'axiosError'
+        errorType: 'AXIOS_ERROR'
       }
     } else {
       return {
-        errorType: 'systemError'
+        errorType: 'SYSTEM_ERROR'
       }
     }
   }

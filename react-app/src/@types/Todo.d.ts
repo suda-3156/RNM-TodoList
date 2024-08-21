@@ -4,15 +4,15 @@
 declare type Todo = {
   id :string,
   title :string,
-  completed :boolean,
-  deleted :boolean,
+  completed : 0|1,
+  deleted : 0|1,
 }
 
 declare type newTodo = {
   id: string,
   title? :string,
-  completed? :boolean,
-  deleted? :boolean,
+  completed? : 0|1,
+  deleted? : 0|1,
 }
 
 declare type TodoId = {
@@ -27,5 +27,4 @@ declare type todoFilter =
   | 'all'
   | 'completed'
   | 'incompleted'
-  | 'deleted'
 

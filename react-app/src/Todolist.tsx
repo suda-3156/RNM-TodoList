@@ -1,12 +1,12 @@
 import { useAtom, useAtomValue, useSetAtom } from "jotai"
 import { CloseOutlined, PlusOutlined} from "@ant-design/icons"
-import { useForm, FormProvider} from "react-hook-form"
+import { useForm, FormProvider } from "react-hook-form"
 import { useEffect, useRef } from "react"
 import { nanoid } from "nanoid"
 import { Radio, RadioChangeEvent } from "antd"
 import './index.css'
 import { getAPI, putAPI, postAPI } from "./controllers"
-import { todoAtom, todoAtomFamily, filterAtom, filteredAtom, historyAtom, deletedAtom } from "./store"
+import { todoAtom, todoAtomFamily, filterAtom, filteredAtom, historyAtom, deletedTodoAtom } from "./store"
 
 /**
  * todoFamily : todoをしまう
@@ -18,56 +18,107 @@ import { todoAtom, todoAtomFamily, filterAtom, filteredAtom, historyAtom, delete
  * 
  * 
  * titleが空のままフォーカスが外れたら、Todoを消したい。あとtrim()とかしたい
- * 多分、onChangeでうまくtitleの変更できてない
  * submithandlerってなに
  */
 
-
-// const firstLoad = atom<boolean>(false)
-
 const TodoItem = (prop: TodoId) => {
-  const isFirstRender = useRef(true)
-  const [deletedTodoIds, setDeletedTodoIds] = useAtom(deletedAtom)
-
   const [item, setItem] = useAtom(todoAtomFamily({id: prop.id}))
   const methods = useForm<TodoTitle>()
-  const toogelCompleted = () => {
-    setItem((prev) => ({...prev, completed: !prev.completed}))
+  const setTodoIds = useSetAtom(todoAtom)
+  const setDeletedTodoIds = useSetAtom(deletedTodoAtom)
+
+  const toogelCompleted = async () => {
+    await putAPI({id: item.id, todo: {id: item.id, title: item.title, completed: (item.completed === 1)? 0 : 1, deleted: item.deleted}})
+      .then((response) => {
+        switch(response.errorType) {
+          case "SUCCESS":
+            console.log("Item update : success")
+            setItem((prev) => ({...prev, completed: (prev.completed === 1)? 0 : 1}))
+            break
+          default:
+            console.error(response.errorType)
+            break
+        }
+      })
+      .catch((error) => {
+        console.error(error)
+      })
   }
-  const handleDelete = () => {
-    console.log("deleted")
-    setItem((prev) => ({...prev, deleted: true}))
-    setDeletedTodoIds((prev) => [...prev, {id: prop.id}])
-    console.log(deletedTodoIds)
+  const handleDelete = async () => {
+    await putAPI({id: item.id, todo: {id: item.id, title: item.title, completed: item.completed, deleted: 1}})
+      .then((response) => {
+        switch(response.errorType) {
+          case "SUCCESS":
+            console.log("Item update : success")
+            setItem((prev) => ({...prev, deleted: 1}))
+            setTodoIds((prev) => prev.filter((todo) => todo.id !== item.id))
+            setDeletedTodoIds((prev) => [...prev, {id: item.id}])
+            break
+          default:
+            console.error(response.errorType)
+            break
+        }
+      })
+      .catch((error) => {
+        console.error(error)
+      })
   }
-  const onSubmit = (data: TodoTitle) => {
+
+  const onSubmit = async (data: TodoTitle) => {
     const newTitle = data.title.trim() || "No title"
-    console.log("newTitle: " + newTitle)
-    setItem((prev) =>  ({...prev, title:newTitle}))     
-    console.log("title: " + item.title)
+    await putAPI({id: item.id, todo: {id: item.id, title: newTitle, completed: item.completed, deleted: item.deleted}})
+      .then((response) => {
+        switch(response.errorType) {
+          case "SUCCESS":
+            console.log("Item update : success")
+            setItem((prev) =>  ({...prev, title:newTitle}))
+            methods.setValue('title', newTitle) // useEffect多用しないほうがいいのかなあ、と。
+            break
+          default:
+            console.error(response.errorType)
+            break
+        }
+      })
+      .catch((error) => {
+        console.error(error)
+      })
   }
 
-  useEffect(() => {
+  // エラー出た時のために、やめておく
 
-    if (isFirstRender.current) {
-      isFirstRender.current = false;
-      return;
-    }
+  // const updateItem = async () => {
+  //   console.log(item)
+  //   await putAPI({id: item.id, todo: item})
+  //     .then((response) => {
+  //       switch(response.errorType) {
+  //         case "SUCCESS":
+  //           console.log("Item update : success")
+  //           break
+  //         default:
+  //           console.error(response.errorType)
+  //           break
+  //       }
+  //     })
+  //     .catch((error) => {
+  //       console.error(error)
+  //     })
+  // }
 
-    putAPI({url: `/${item.id}`, todo: item})
-      .then((response) => console.log("Item Updated : " + response))
-      .catch((error) => console.log(error))
-      
-  },[item])
-
-  if( item.deleted ) return 
+  // useEffect(() => {
+  //   if(isFirstRender) {
+  //     setIsFirstRender(false)
+  //     return
+  //   }
+  //   console.log("updateItem is called.")
+  //   updateItem()
+  // },[item])
 
   return (
     <div className="bblock flex justify-center items-center gap-x-2 px-2 mb-4">
         <input
           id="isCompleted" 
           type="checkbox"
-          checked={item.completed}
+          checked={item.completed === 1}
           onChange={toogelCompleted}
         />
       <FormProvider {...methods}>
@@ -75,12 +126,7 @@ const TodoItem = (prop: TodoId) => {
           <input
             type="text"
             id="title"
-            // defaultValue={item.title}
-            key={item.title}
-            defaultValue={item.title}  // valueをwatchで管理
-            // onChange={(e) => {
-            //   methods.setValue("title", e.target.value);
-            // }}
+            defaultValue={item.title}
             style={{ textDecoration: item.completed ? 'line-through' : '' }}
             className="w-full"
             {...methods.register('title')}
@@ -99,11 +145,13 @@ const Filter = () => {
     const value = e.target.value as 'all' | 'completed' | 'incompleted'
     setFilter(value)
   }
+
   return (
     <div className="mb-5">
       <Radio.Group 
         onChange={handleRadioChange}
         value={filter}
+        className="flex gap-x-5"
       >
         <Radio value="all">All</Radio>
         <Radio value="completed">Completed</Radio>
@@ -117,22 +165,20 @@ const CreateTodoForm = () => {
   const methods = useForm<TodoTitle>();
   const setTodoAtom = useSetAtom(todoAtom)
 
-  // formの値から新しいTodoを作る
   const onSubmit = async (data:TodoTitle) => {
     try {
       const newId = nanoid()
       const newTitle = data.title.trim() || "No title"
       setTodoAtom((prev) => ([...prev, {id: newId}]))
       todoAtomFamily({id: newId, title: newTitle})
-      await postAPI({url: "", todo: {id: newId, title: newTitle, completed: false, deleted: false}})
-      // await putAPI({url: `/${newId}`, todo: useAtomValue(todoAtomFamily({id: newId}))}) // こっちはinvalid hooks 
+      await postAPI({todo: {id: newId, title: newTitle, completed: 0, deleted: 0}})
     } catch (error) {
       console.error("Failed to submit todo:", error )
     } finally {
       methods.reset()
     }
   }
-  // エラーメッセージを入れる
+
   return (
     <FormProvider {...methods}>
       <form onSubmit={methods.handleSubmit(onSubmit)} className="w-full px-4">
@@ -157,7 +203,10 @@ const CreateTodoForm = () => {
 export const TodoList = () => {
   const filteredTodoIds = useAtomValue(filteredAtom)
   const [todoIds, setTodoIds] = useAtom(todoAtom)
+  const [deletedTodoIds, setDeletedTodoIds] = useAtom(deletedTodoAtom)
   const isFirstLoad = useRef(true); // 初回ロードを追跡
+  // const [ isFirstRender, setIsFirstRender ] = useState(false) // こっちは何故か使えない　？？？？？
+
   const setToggle = useSetAtom(historyAtom)
 
   const handleToggle = () => {
@@ -166,32 +215,38 @@ export const TodoList = () => {
   
   useEffect(() => {
     if ( isFirstLoad.current ) {    
-      getAPI({url: '', id: ''})
+      getAPI({id: ''})
         .then((res) => {
           switch(res.errorType) {
-            case "success":
+            case "SUCCESS":
               const todos :Todo[] = res.result ?? []
               todos.map((todo) => {
-                if (!todoIds.some(item => item.id === todo.id)) {
+                if (!todoIds.some(item => item.id === todo.id) && !todo.deleted) {
                   setTodoIds((prev) => [...prev, { id: todo.id }])
                   todoAtomFamily(todo)
-                  console.log(todo)
+                }
+                if (!deletedTodoIds.some(item => item.id === todo.id) && todo.deleted) {
+                  setDeletedTodoIds((prev) => [...prev, { id: todo.id }])
+                  todoAtomFamily(todo)
                 }
               })
               break
             default:
-              alert(res.errorType)
+              console.error(res.errorType)
               break
           }
         })
         .catch(error => console.log(error))
-        .finally(() => {
-          console.log("todoIds is updated")
-          console.log(todoIds)
-        })
-        isFirstLoad.current = false; // 初回ロードを終了
+      isFirstLoad.current = false; // 初回ロードを終了
     }
   },[setTodoIds])
+
+  useEffect(() => {
+    console.log("todoIds: " + todoIds.map((todo) => todo.id))
+  },[todoIds])
+  useEffect(() => {
+    console.log("deletedTodoIds: " + deletedTodoIds.map((todo) => todo.id))
+  },[deletedTodoIds])
 
   return (
     <div className="max-w-[600px] min-w-[400px] w-full h-full flex flex-col justify-center items-center gap-y-4">
