@@ -81,7 +81,7 @@ services:
 
 # defaultのネットワークを使ってないので。
 networks:
-  backend:]
+  backend:
   
 
 volumes:
